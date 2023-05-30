@@ -11,7 +11,7 @@ public class LabyJeu implements Jeu {
         return laby;
     }
 
-    private Labyrinthe laby;
+    public Labyrinthe laby;
 
 
     @Override
@@ -33,11 +33,7 @@ public class LabyJeu implements Jeu {
 
     @Override
     public void init() {
-        try {
-            laby = new Labyrinthe("labySimple/laby1.txt");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
     }
 
     @Override
