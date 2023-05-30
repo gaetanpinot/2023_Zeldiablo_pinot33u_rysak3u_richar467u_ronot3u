@@ -18,6 +18,7 @@ public class Labyrinthe {
     public static final char PJ = 'P';
     public static final char VIDE = '.';
 
+
     /**
      * constantes actions possibles
      */
@@ -36,6 +37,7 @@ public class Labyrinthe {
      * les murs du labyrinthe
      */
     public boolean[][] murs;
+    public CaseDeclencheur[][] cased;
 
     /**
      * retourne la case suivante selon une actions
@@ -90,6 +92,7 @@ public class Labyrinthe {
 
         // creation labyrinthe vide
         this.murs = new boolean[nbColonnes][nbLignes];
+        this.cased=new CaseDeclencheur[nbColonnes][nbLignes];
         this.pj = null;
 
         // lecture des cases
@@ -111,6 +114,7 @@ public class Labyrinthe {
                     case VIDE:
                         this.murs[colonne][numeroLigne] = false;
                         break;
+
                     case MONSTRE:
                         this.murs[colonne][numeroLigne] = false;
                         this.monstre=new Monstre(colonne,numeroLigne);
@@ -136,6 +140,11 @@ public class Labyrinthe {
         bfRead.close();
     }
 
+    public void ajouterCaseDeclencheur(CaseDeclencheur c,int x,int y){
+        this.cased[x][y]=c;
+    }
+
+
     public Labyrinthe(){
         this.murs=new boolean[10][10];
         for(int i=0;i<10;i++){
@@ -156,12 +165,14 @@ public class Labyrinthe {
     }
 
 
+
     /**
      * deplace le personnage en fonction de l'action.
      * gere la collision avec les murs
      *
      * @param action une des actions possibles
      */
+
     public void deplacerPerso(String action, Personnage perso) {
         // case courante
         int[] courante = {perso.x, perso.y};
@@ -172,9 +183,13 @@ public class Labyrinthe {
         // si c'est pas un mur, on effectue le deplacement
         if (!this.murs[suivante[0]][suivante[1]]&&!this.monstre.etrePresent(suivante[0],suivante[1])&&!this.pj.etrePresent(suivante[0],suivante[1])) {
             // on met a jour personnage
+            if(this.cased[suivante[0]][suivante[1]]!=null){
+                this.cased[suivante[0]][suivante[1]].event();
+            }
             perso.x = suivante[0];
             perso.y = suivante[1];
         }
+
     }
 
 
