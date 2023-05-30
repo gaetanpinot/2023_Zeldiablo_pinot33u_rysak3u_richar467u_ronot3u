@@ -1,0 +1,36 @@
+@startuml
+
+skin rose
+
+title Labyrinthe Moteur
+
+
+
+
+
+
+
+
+
+interface Jeu{
+  void update(double secondes, Clavier clavier)
+  void init()
+  boolean etreFini();
+}
+interface DessinJeu{
+  void dessinerJeu(Jeu, jeu,Canvas canvas)
+}
+
+class LabyJeu{
+  + Labyrinthe laby
+  + Labyrinthe getLaby()
+  void update(double secondes, Clavier clavier)
+  void init()
+  boolean etreFini();
+}
+class LabyDessin{
+  void dessinerJeu(Jeu, jeu,Canvas canvas)
+}
+LabyDessin -.-|>DessinJeu
+
+LabyJeu -.-|>Jeu
