@@ -15,17 +15,17 @@ public class LabyDessin implements DessinJeu {
 
         gc.setFill(Color.WHITE);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-
+        int taille=20;
         for (int i = 0; i < laby.getLength(); i++) {
             for (int j = 0; j < laby.getLengthY(); j++) {
                 if(laby.getMur(i, j)){
                     gc.setFill(Color.BLACK);
-                    gc.fillRect(i + i * 20, j + j * 20, 20, 20);
+                    gc.fillRect(i + i * taille, j + j * taille, taille, taille);
                 }
                 
                 if(laby.pj.etrePresent(i, j)){
                     gc.setFill(Color.RED);
-                    gc.fillOval(i + i * 10, j + j * 10, 10, 10);
+                    gc.fillRect(i + i * taille, j + j * taille, taille , taille);
                 }
             }
         }
