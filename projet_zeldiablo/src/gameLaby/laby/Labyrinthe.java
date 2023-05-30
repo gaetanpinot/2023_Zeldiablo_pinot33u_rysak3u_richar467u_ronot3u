@@ -17,7 +17,6 @@ public class Labyrinthe {
     public static final char MUR = 'X';
     public static final char PJ = 'P';
     public static final char VIDE = '.';
-    public static final char CASED= 'C';
 
     /**
      * constantes actions possibles
@@ -37,7 +36,6 @@ public class Labyrinthe {
      * les murs du labyrinthe
      */
     public boolean[][] murs;
-    public CaseDeclencheur[][] cased;
 
     /**
      * retourne la case suivante selon une actions
@@ -92,7 +90,6 @@ public class Labyrinthe {
 
         // creation labyrinthe vide
         this.murs = new boolean[nbColonnes][nbLignes];
-        this.cased=new CaseDeclencheur[nbColonnes][nbLignes];
         this.pj = null;
 
         // lecture des cases
@@ -114,7 +111,6 @@ public class Labyrinthe {
                     case VIDE:
                         this.murs[colonne][numeroLigne] = false;
                         break;
-
                     case MONSTRE:
                         this.murs[colonne][numeroLigne] = false;
                         this.monstre=new Monstre(colonne,numeroLigne);
@@ -139,9 +135,26 @@ public class Labyrinthe {
         // ferme fichier
         bfRead.close();
     }
-    public void ajouterCaseDeclencheur(CaseDeclencheur c,int x,int y){
-        this.cased[x][y]=c;
+
+    public Labyrinthe(){
+        this.murs=new boolean[10][10];
+        for(int i=0;i<10;i++){
+            for(int j=0;j<10;j++){
+                this.murs[i][j]=false;
+            }
+        }
+
+        for (int i=0;i<10;i++){
+            this.murs[i][0]=true;
+            this.murs[i][9]=true;
+            this.murs[0][i]=true;
+            this.murs[9][i]=true;
+        }
+
+        this.pj=new Perso(5,5);
+        this.monstre=new Monstre(1,1);
     }
+
 
     /**
      * deplace le personnage en fonction de l'action.
@@ -149,7 +162,6 @@ public class Labyrinthe {
      *
      * @param action une des actions possibles
      */
-
     public void deplacerPerso(String action, Personnage perso) {
         // case courante
         int[] courante = {perso.x, perso.y};
@@ -160,13 +172,9 @@ public class Labyrinthe {
         // si c'est pas un mur, on effectue le deplacement
         if (!this.murs[suivante[0]][suivante[1]]&&!this.monstre.etrePresent(suivante[0],suivante[1])&&!this.pj.etrePresent(suivante[0],suivante[1])) {
             // on met a jour personnage
-            if(this.cased[suivante[0]][suivante[1]]!=null){
-                this.cased[suivante[0]][suivante[1]].event();
-            }
             perso.x = suivante[0];
             perso.y = suivante[1];
         }
-
     }
 
 
