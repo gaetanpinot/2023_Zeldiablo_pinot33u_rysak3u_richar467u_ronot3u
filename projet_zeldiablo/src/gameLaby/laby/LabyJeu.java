@@ -29,6 +29,7 @@ public class LabyJeu implements Jeu {
             laby.deplacerPerso(laby.BAS);
         }
 
+
     }
 
     @Override
