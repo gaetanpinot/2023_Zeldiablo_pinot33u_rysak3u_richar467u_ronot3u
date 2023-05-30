@@ -13,7 +13,7 @@ public class MainLaby {
         int pFPS = 10;
 
         LabyJeu lj=new LabyJeu();
-        lj.laby=new Labyrinthe("labySimple/laby1.txt");
+        lj.laby=new Labyrinthe("labySimple/labydefaut.txt");
         LabyDessin ld=new LabyDessin();
 
         MoteurJeu.setTaille(width,height);
