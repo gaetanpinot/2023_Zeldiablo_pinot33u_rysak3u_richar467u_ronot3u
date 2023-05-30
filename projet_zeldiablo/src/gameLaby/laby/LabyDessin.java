@@ -25,7 +25,7 @@ public class LabyDessin implements DessinJeu {
                 
                 if(laby.pj.etrePresent(i, j)){
                     gc.setFill(Color.RED);
-                    gc.fillRect(i * taille, j * taille, taille , taille);
+                    gc.fillOval(i * taille, j * taille, taille , taille);
                 }
             }
         }
