@@ -136,6 +136,25 @@ public class Labyrinthe {
         bfRead.close();
     }
 
+    public Labyrinthe(){
+        this.murs=new boolean[10][10];
+        for(int i=0;i<10;i++){
+            for(int j=0;j<10;j++){
+                this.murs[i][j]=false;
+            }
+        }
+
+        for (int i=0;i<10;i++){
+            this.murs[i][0]=true;
+            this.murs[i][9]=true;
+            this.murs[0][i]=true;
+            this.murs[9][i]=true;
+        }
+
+        this.pj=new Perso(5,5);
+        this.monstre=new Monstre(1,1);
+    }
+
 
     /**
      * deplace le personnage en fonction de l'action.
