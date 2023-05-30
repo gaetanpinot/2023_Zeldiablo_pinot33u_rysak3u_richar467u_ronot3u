@@ -21,7 +21,12 @@ public class Porte implements CaseDeclencheur{
     }
 
     @Override
-    public void event() {
-        
+    public int event() {
+        return 0;
+    }
+
+    @Override
+    public void persoPart() {
+
     }
 }
