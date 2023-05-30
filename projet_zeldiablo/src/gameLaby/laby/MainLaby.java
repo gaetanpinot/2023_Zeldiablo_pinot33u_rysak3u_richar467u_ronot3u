@@ -16,8 +16,12 @@ public class MainLaby {
         int height = 600;
         int pFPS = 10;
 
-        LabyJeu lj=new LabyJeu();
-        lj.laby=new Labyrinthe("labySimple/" + nomFichier);
+        LabyJeu lj = new LabyJeu();
+        if (nomFichier == null) {
+            lj.laby = new Labyrinthe();
+        } else{
+            lj.laby = new Labyrinthe("labySimple/" + nomFichier);
+    }
         LabyDessin ld=new LabyDessin();
 
         MoteurJeu.setTaille(width,height);

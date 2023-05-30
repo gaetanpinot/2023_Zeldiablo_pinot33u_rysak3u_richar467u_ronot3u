@@ -30,7 +30,9 @@ public class LabyJeu implements Jeu {
         }
         String [] action={Labyrinthe.GAUCHE,Labyrinthe.DROITE,Labyrinthe.HAUT,Labyrinthe.BAS};
 
-        this.laby.deplacerPerso(action[(int)Math.floor(Math.random()*action.length)],this.laby.getMonstre());
+
+        this.laby.deplacerPerso(action[(int) Math.floor(Math.random() * action.length)], this.laby.getMonstre());
+
     }
 
     @Override
