@@ -9,7 +9,7 @@ import moteurJeu.Jeu;
 public class LabyDessin implements DessinJeu {
     @Override
     public void dessinerJeu(Jeu jeu, Canvas canvas) {
-        Labyrinthe laby = (Labyrinthe) jeu;
+        Labyrinthe laby = ((LabyJeu)jeu).getLaby();
 
         final GraphicsContext gc = canvas.getGraphicsContext2D();
 
