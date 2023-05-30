@@ -7,6 +7,10 @@ import java.io.IOException;
 
 public class LabyJeu implements Jeu {
 
+    public Labyrinthe getLaby() {
+        return laby;
+    }
+
     private Labyrinthe laby;
 
 
