@@ -129,6 +129,7 @@ public class Labyrinthe {
                     default:
                         throw new Error("caractere inconnu " + c);
                 }
+
             }
 
             // lecture
@@ -138,6 +139,15 @@ public class Labyrinthe {
 
         // ferme fichier
         bfRead.close();
+
+        //ajout de casse pieger aléatoire
+        int x =(int)Math.round(Math.random()*this.getLength()-1);
+        int y =(int)Math.round(Math.random()*this.getLengthY()-1);
+        while (getMur(x,y)){
+            x =(int)Math.round(Math.random()*this.getLength()-1);
+            y =(int)Math.round(Math.random()*this.getLengthY()-1);
+        }
+        this.ajouterCaseDeclencheur(new CasePiege(),x,y);
     }
 
     public void ajouterCaseDeclencheur(CaseDeclencheur c,int x,int y){
@@ -188,6 +198,9 @@ public class Labyrinthe {
             }
             perso.x = suivante[0];
             perso.y = suivante[1];
+            if(this.cased[courante[0]][courante[1]]!=null){
+                this.cased[courante[0]][courante[1]].persoPart();
+            }
         }
 
     }

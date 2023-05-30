@@ -1,5 +1,6 @@
 package gameLaby.laby;
 
 public interface CaseDeclencheur {
-    public void event();
+     int event();
+     void persoPart();
 }
