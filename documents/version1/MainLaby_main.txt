@@ -1,0 +1,24 @@
+@startuml
+participant Actor
+Actor -> MainLaby : main
+activate MainLaby
+create Labyrinthe
+MainLaby -> Labyrinthe : new
+activate Labyrinthe
+create Perso
+Labyrinthe -> Perso : new
+activate Perso
+Perso --> Labyrinthe
+deactivate Perso
+Labyrinthe --> MainLaby
+deactivate Labyrinthe
+MainLaby -> MoteurJeu : setTaille
+activate MoteurJeu
+MoteurJeu --> MainLaby
+deactivate MoteurJeu
+MainLaby -> MoteurJeu : launch
+activate MoteurJeu
+MoteurJeu --> MainLaby
+deactivate MoteurJeu
+return
+@enduml
