@@ -25,11 +25,12 @@ public class Labyrinthe {
     public static final String BAS = "Bas";
     public static final String GAUCHE = "Gauche";
     public static final String DROITE = "Droite";
-
+    public static final char MONSTRE='M';
     /**
      * attribut du personnage
      */
     public Perso pj;
+    public Monstre monstre;
 
     /**
      * les murs du labyrinthe
@@ -109,6 +110,10 @@ public class Labyrinthe {
                         break;
                     case VIDE:
                         this.murs[colonne][numeroLigne] = false;
+                        break;
+                    case MONSTRE:
+                        this.murs[colonne][numeroLigne] = false;
+                        this.monstre=new Monstre(colonne,numeroLigne);
                         break;
                     case PJ:
                         // pas de mur
