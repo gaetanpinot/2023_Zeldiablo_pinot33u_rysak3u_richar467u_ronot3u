@@ -20,12 +20,12 @@ public class LabyDessin implements DessinJeu {
             for (int j = 0; j < laby.getLengthY(); j++) {
                 if(laby.getMur(i, j)){
                     gc.setFill(Color.BLACK);
-                    gc.fillRect(i, j, 20, 20);
+                    gc.fillRect(i + i * 20, j + j * 20, 20, 20);
                 }
                 
                 if(laby.pj.etrePresent(i, j)){
                     gc.setFill(Color.RED);
-                    gc.fillOval(i, j, 10, 10);
+                    gc.fillOval(i + i * 10, j + j * 10, 10, 10);
                 }
             }
         }
