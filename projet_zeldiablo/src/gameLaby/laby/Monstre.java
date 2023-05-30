@@ -1,11 +1,6 @@
 package gameLaby.laby;
 
-
-/**
- * gere un personnage situe en x,y
- */
-public class Perso  extends Personnage{
-
+public class Monstre extends Personnage{
 
     /**
      * constructeur
@@ -13,12 +8,7 @@ public class Perso  extends Personnage{
      * @param dx position selon x
      * @param dy position selon y
      */
-    public Perso(int dx, int dy) {
+    public Monstre(int dx, int dy) {
         super(dx,dy);
     }
-
-
-
-
-
 }
