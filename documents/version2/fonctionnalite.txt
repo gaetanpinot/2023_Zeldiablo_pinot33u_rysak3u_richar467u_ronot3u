@@ -29,4 +29,5 @@
   - le monstre doit se déplacer sur une case adjacente. Il considère les 4 directions de déplacement possibles.
   - le monstre ne peut pas se déplacer sur mur. S'il tente de se déplacer sur cette case, il ne bouge pas.
   - le monstre ne peut pas se trouver sur la même case que le personnage.
+  - modification de deplacer perso pour deplacer perso ou monstre
 
