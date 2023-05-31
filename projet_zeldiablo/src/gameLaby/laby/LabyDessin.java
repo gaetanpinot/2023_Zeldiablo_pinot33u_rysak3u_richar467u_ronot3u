@@ -38,6 +38,15 @@ public class LabyDessin implements DessinJeu {
                     gc.fillRect(i * taille, j * taille, taille, taille);
 
                 }
+
+                for (CaseDeclencheur c:laby.caseD) {
+                    if (c instanceof CasePiege){
+                        if(((CasePiege) (c)).getPasserDessus()){
+                            gc.setFill(Color.BROWN);
+                            gc.fillRect(c.getX() * taille, c.getY() * taille, taille, taille);
+                        }
+                    }
+                }
             }
         }
     }

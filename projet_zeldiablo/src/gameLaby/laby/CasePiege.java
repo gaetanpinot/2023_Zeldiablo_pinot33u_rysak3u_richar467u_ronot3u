@@ -7,6 +7,7 @@ public class CasePiege extends CaseDeclencheur {
     public CasePiege(int dx, int dy) {
         super(dx, dy);
         ammorce = true;
+        passerDessus = false;
     }
 
     @Override
