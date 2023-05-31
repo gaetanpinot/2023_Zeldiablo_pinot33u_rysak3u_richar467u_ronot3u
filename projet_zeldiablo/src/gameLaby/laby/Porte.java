@@ -8,7 +8,7 @@ public class Porte extends CaseDeclencheur{
 
     public Porte(int x, int y){
         super(x,y);
-        ferme = false;
+        ferme = true;
     }
 
     @Override
