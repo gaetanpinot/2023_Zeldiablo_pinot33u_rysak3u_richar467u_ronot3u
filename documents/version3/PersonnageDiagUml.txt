@@ -1,0 +1,33 @@
+@startuml
+
+class Personnage{
+int x
+int y 
+int vie
++ Personnage(int dx, int dy,int vie)
++ etrePresent(int dx, int dy):boolean
++ getX():int
++ getY():int
++ getVie():int
++ ajouterVie(int i)
+ }
+ 
+class Monstre{
+int x
+int y 
+int vie
++ Monstre(int dx, int dy,int vie)
+}
+
+Monstre -u-|>Personnage
+
+class Perso{
+int x
+int y 
+int vie
++ Perso(int dx, int dy,int vie)
+}
+
+Perso -u-|>Personnage
+
+@enduml

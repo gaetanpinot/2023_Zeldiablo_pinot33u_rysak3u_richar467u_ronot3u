@@ -1,0 +1,92 @@
+@startuml
+
+class Labyrinthe{
+}
+Labyrinthe ->"*" CaseDeclencheur : caseD
+Labyrinthe ->"1" Porte : p
+Labyrinthe ->"1" Perso : pj
+Labyrinthe ->"1" Monstre : monstre
+
+class Personnage{
+int x
+int y 
+int vie
++ Personnage(int dx, int dy,int vie)
++ etrePresent(int dx, int dy):boolean
++ getX():int
++ getY():int
++ getVie():int
++ ajouterVie(int i)
+ }
+ 
+class Monstre{
+int x
+int y 
+int vie
++ Monstre(int dx, int dy,int vie)
+}
+
+Monstre -u-|>Personnage
+
+class Perso{
+int x
+int y 
+int vie
++ Perso(int dx, int dy,int vie)
+}
+
+Perso -u-|>Personnage
+
+abstract class CaseDeclencheur{
+- int x
+- int y
++ CaseDeclencheur(int x,int y)
+ void event(Personnage p)
++ getX():int
++ getY():int
+}
+
+class CaseOuverture{
+  int x 
+  int y 
+  
+  CaseOuverture(int x,int y,Porte p)
+  void event(Personnage p)
+  
+}
+
+
+class Porte{
+  int x
+  int y
+  etrePresent(int x, int y):boolean
++ Porte(int x, int y)
++ etreFerme():boolean
++ setFerme(boolean ferme)
+}
+
+class CaseFermeture{
+  int x 
+  int y 
+  
+  CaseFermeture(int x,int y,Porte p)
+  void event(Personnage p)
+  
+}
+
+class CasePiege{
+  int x 
+  int y 
+  boolean ammorce
++ CasePiege(int dx,int dy)
++ void event(Personnage p)
+}
+
+CaseOuverture -d-> "1" Porte : p
+CaseFermeture -d-> "1" Porte : p
+
+CaseOuverture -u-|>CaseDeclencheur
+CaseFermeture -u-|>CaseDeclencheur
+CasePiege -u-|>CaseDeclencheur
+
+@enduml
