@@ -1,0 +1,62 @@
+﻿1. Création d'un labyrinthe par défaut
+- Descriptif :
+  - Lors du lancement du jeu, un labyrinthe par défaut est afficher, le personnage sera au centre du labyrinthe
+- Critères de validation :
+  - Le labyrinthe par défaut est constitué d'une arène de taille 10*10.
+  - Le personnage est placé au centre de l'arène.
+  - Les monstres (s'il y en a) sont placés sur des cases vides (à adapter).
+
+2. Collision avec les Murs
+- Descriptif :
+  - Lorsque le joueur demande à déplacer le personnage en direction d'un mur, le personnage reste bloqué et ne se déplace pas.
+- Critères de validation :
+  - La collision fonctionne dans les 4 directions.
+  - Si la case est vide, le personnage avance.
+
+3. Gestion des niveaux
+- Descriptif :
+  - Le jeu est constitué de plusieurs niveaux
+- Critères de validation :
+  - Un niveau décrit le labyrinthe et les monstres qui y sont contenus.
+  - Il est possible de choisir le niveau à lancer au démarrage de l'application (en modiant la chaine de caractère passée dans le main).
+  - Testez en ajoutant un second niveau à définir au préalable.
+
+4. Cases déclencheur
+- Descriptif :
+  - Lorsque une entité arrive sur certaines cases, ces cases déclenchent un effet.
+- Critères de validation :
+  - Les cases avec effet sont des cases traversables.
+  - Lorsqu'un personnage (héros ou monstre) marche sur cette case, elle déclenche immédiatement un effet
+  - cet effet se traduit pour le moment, par un achage dans la console à préciser.
+
+5. Cases piégées
+- Descriptif :
+  - Lorsque une entité (héros ou monstre) arrive sur une case piégée, il subit des dégâts.
+- Critères de validation :
+  - Les dégâts ne se déclenchent que lorsque le joueur arrive sur la case, il peut ensuite rester sur cette case aussi longtemps 
+    qu'il le souhaite sans subir d'autres dégâts.
+  - Lorsque la case devient à nouveau vide, le piège se réamorce.
+  - (optionnel) Lorsqu'une case a été détectée comme un piège, elle s'affiche différemment dans le labyrinthe (en brun) ce qui permet au joueur d'en tenir compte
+    ensuite
+
+6. Ouverture de Passages secrets
+- Descriptif :
+  - Lorsque une entité (héros ou monstre) arrive sur une case d'ouverture, le labyrinthe se modie et la porte liée à cette case 
+    (située à un autre endroit dans le labyrinthe)s'ouvre. Les portes peuvent donc constituer des pièges cachés puisque une case peut ouvrir
+    les portes qui protègent le héros d'une horde de monstres.
+- Critères de validation :
+  - Une porte est un type de case particulière. Une porte n'a pas d'orientation et occupe toute une case.
+  - Une porte peut être fermée ou ouverte. Une porte fermée bloque le trajet et une porte ouverte est traversable.
+  - La porte s'ouvre au passage du personnage sur la case qui déclenche son ouverture.
+  - Une fois la porte ouverte, elle reste ouverte.
+  - Les portes sont achées d'une manière particulière : elles sont de couleur noire et sont représentées par des carrés qui occupent toute la case. 
+    Le carré est plein ou vide en fonction de l'état de la porte (ouverte/fermée).
+
+7. Fermeture de Passage
+- Descriptif :
+  - Lorsque une entité (héros ou monstre) arrive sur une case de type fermeture, le labyrinthe se modie et la porte liée à cette case se referme. 
+    Cela permet de faire des pièges retors (une case ouvre la porte, la case derrière la porte la referme).
+- Critères de validation :
+  - Cette case a l'effet inverse de la case précédente.
+  - Une porte fermée reste fermée.
+  - Une même porte peut être manipulée par plusieurs cases (de type fermeture/ouverture).
