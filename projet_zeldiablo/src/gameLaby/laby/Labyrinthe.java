@@ -219,6 +219,7 @@ public class Labyrinthe {
             if(!this.p.etrePresent(suivante[0],suivante[1])||((this.p.etrePresent(suivante[0],suivante[1])&&!this.p.etreFerme()))) {
                 perso.x = suivante[0];
                 perso.y = suivante[1];
+
             }
 
         }

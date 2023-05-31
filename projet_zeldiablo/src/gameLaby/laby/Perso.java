@@ -17,7 +17,10 @@ public class Perso  extends Personnage{
         super(dx,dy,vie);
     }
 
-
+    public boolean etreEnFace(Personnage p){
+        int[] tempC=Labyrinthe.getSuivant(this.x,this.y,this.orientation);
+        return(p.etrePresent(tempC[0],tempC[1]));
+    }
 
 
 

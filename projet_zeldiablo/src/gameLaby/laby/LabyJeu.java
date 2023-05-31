@@ -19,15 +19,21 @@ public class LabyJeu implements Jeu {
 
         if (clavier.droite) {
             laby.deplacerPerso(laby.DROITE, laby.pj);
+            laby.pj.orientation=Labyrinthe.DROITE;
         }
         if (clavier.gauche) {
             laby.deplacerPerso(laby.GAUCHE, laby.pj);
+            laby.pj.orientation=Labyrinthe.GAUCHE;
         }
         if (clavier.haut) {
             laby.deplacerPerso(laby.HAUT, laby.pj);
+            laby.pj.orientation=Labyrinthe.HAUT;
+
         }
         if (clavier.bas) {
             laby.deplacerPerso(laby.BAS, laby.pj);
+            laby.pj.orientation=Labyrinthe.BAS;
+
         }
         String [] action={Labyrinthe.GAUCHE,Labyrinthe.DROITE,Labyrinthe.HAUT,Labyrinthe.BAS};
 
