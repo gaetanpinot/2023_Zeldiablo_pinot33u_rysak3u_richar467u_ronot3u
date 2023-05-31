@@ -1,0 +1,27 @@
+@startuml
+title event de CasePiege
+participant Actor
+
+Actor -> CasePiege : event
+activate Actor
+
+activate CasePiege
+CasePiege -> CaseDeclencheur : getX
+activate CaseDeclencheur
+CaseDeclencheur --> CasePiege
+deactivate CaseDeclencheur
+CasePiege -> CaseDeclencheur : getY
+activate CaseDeclencheur
+CaseDeclencheur --> CasePiege
+deactivate CaseDeclencheur
+CasePiege -> Personnage : etrePresent
+activate Personnage
+Personnage --> CasePiege
+deactivate Personnage
+CasePiege -> Personnage : ajouterVie
+activate Personnage
+Personnage --> CasePiege
+deactivate Personnage
+return
+deactivate Actor
+@enduml
