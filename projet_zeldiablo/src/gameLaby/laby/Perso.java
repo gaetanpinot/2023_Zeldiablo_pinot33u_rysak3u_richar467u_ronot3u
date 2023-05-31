@@ -13,8 +13,8 @@ public class Perso  extends Personnage{
      * @param dx position selon x
      * @param dy position selon y
      */
-    public Perso(int dx, int dy) {
-        super(dx,dy);
+    public Perso(int dx, int dy,int vie) {
+        super(dx,dy,vie);
     }
 
 

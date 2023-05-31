@@ -4,7 +4,7 @@ public class Personnage {
     /**
      * position du personnage
      */
-    int x, y;
+    int x, y,vie;
 
     /**
      * constructeur
@@ -12,9 +12,10 @@ public class Personnage {
      * @param dx position selon x
      * @param dy position selon y
      */
-    public Personnage(int dx, int dy) {
+    public Personnage(int dx, int dy,int vie) {
         this.x = dx;
         this.y = dy;
+        this.vie=vie;
     }
 
     /**
@@ -47,5 +48,11 @@ public class Personnage {
     public int getY() {
         //getter
         return this.y;
+    }
+    public void ajouterVie(int i){
+        this.vie+=i;
+    }
+    public int getVie(){
+        return vie;
     }
 }

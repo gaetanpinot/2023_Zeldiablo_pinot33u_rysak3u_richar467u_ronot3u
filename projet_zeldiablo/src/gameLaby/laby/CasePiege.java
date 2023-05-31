@@ -14,6 +14,7 @@ public class CasePiege extends CaseDeclencheur{
             if(ammorce){
                 System.out.println("boom");
                 ammorce=false;
+                p.ajouterVie(-10);
             }
         }else {
             ammorce=true;

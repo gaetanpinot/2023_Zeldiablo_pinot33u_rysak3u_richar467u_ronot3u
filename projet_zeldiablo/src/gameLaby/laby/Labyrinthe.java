@@ -120,13 +120,13 @@ public class Labyrinthe {
 
                     case MONSTRE:
                         this.murs[colonne][numeroLigne] = false;
-                        this.monstre=new Monstre(colonne,numeroLigne);
+                        this.monstre=new Monstre(colonne,numeroLigne,100);
                         break;
                     case PJ:
                         // pas de mur
                         this.murs[colonne][numeroLigne] = false;
                         // ajoute PJ
-                        this.pj = new Perso(colonne, numeroLigne);
+                        this.pj = new Perso(colonne, numeroLigne,100);
                         break;
 
                     default:
@@ -191,8 +191,10 @@ public class Labyrinthe {
             this.murs[9][i]=true;
         }
 
-        this.pj=new Perso(5,5);
-        this.monstre=new Monstre(1,1);
+        this.pj=new Perso(5,5,100);
+        this.monstre=new Monstre(1,1,100);
+        this.p=new Porte(1,1);
+        this.caseD=new ArrayList<>();
     }
 
 
@@ -273,5 +275,8 @@ public class Labyrinthe {
     }
     public Monstre getMonstre(){
         return  this.monstre;
+    }
+    public Porte getPorte(){
+        return p;
     }
 }
