@@ -107,3 +107,4 @@ MainLaby         -[#595959,dashed]->  Labyrinthe      : "«create»"
 Monstre          -[#000082,plain]-^  Personnage      
 Perso            -[#000082,plain]-^  Personnage      
 @enduml
+
