@@ -1,19 +1,21 @@
 package gameLaby.laby;
 
-public class Porte extends CaseDeclencheur{
-
+public class Porte {
+    int x,y;
     private boolean ferme;
 
 
 
-    public Porte(int x, int y){
-        super(x,y);
-        ferme = false;
+    boolean etrePresent(int x,int y){
+        if(this.x==x&&this.y==y){
+            return true;
+        }
+        return false;
     }
-
-    @Override
-    void event(Personnage p) {
-
+    public Porte(int x, int y){
+        this.x=x;
+        this.y=y;
+        ferme = true;
     }
 
     public boolean etreFerme() {

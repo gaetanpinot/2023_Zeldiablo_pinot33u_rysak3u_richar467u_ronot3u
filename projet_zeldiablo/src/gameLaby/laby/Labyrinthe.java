@@ -40,6 +40,8 @@ public class Labyrinthe {
     public boolean[][] murs;
     public ArrayList<CaseDeclencheur> caseD;
 
+    Porte p;
+
     /**
      * retourne la case suivante selon une actions
      *
@@ -143,17 +145,31 @@ public class Labyrinthe {
         this.caseD=new ArrayList<>();
 
         //ajout de casse pieger aléatoire
-        int x =(int)Math.round(Math.random()*this.getLength()-1);
-        int y =(int)Math.round(Math.random()*this.getLengthY()-1);
-        while (getMur(x,y)){
-            x =(int)Math.round(Math.random()*this.getLength()-1);
-            y =(int)Math.round(Math.random()*this.getLengthY()-1);
-        }
-        this.ajouterCaseDeclencheur(new CasePiege(x,y));
+        int [] coord=this.genererCoorValid();
+
+        this.ajouterCaseDeclencheur(new CasePiege(coord[0],coord[1]));
+
+        coord=this.genererCoorValid();
+
+        this.p=new Porte(coord[0],coord[1]);
+
+        coord=this.genererCoorValid();
+
+        this.ajouterCaseDeclencheur(new CaseOuverture(coord[0],coord[1],this.p));
     }
 
     public void ajouterCaseDeclencheur(CaseDeclencheur c){
         this.caseD.add(c);
+    }
+
+    public int[] genererCoorValid(){
+        int x =(int)Math.floor(Math.random()*this.getLength());
+        int y =(int)Math.floor(Math.random()*this.getLengthY());
+        while (getMur(x,y)||this.pj.etrePresent(x,y)||this.monstre.etrePresent(x,y)){
+            x =(int)Math.floor(Math.random()*this.getLength());
+            y =(int)Math.floor(Math.random()*this.getLengthY());
+        }
+        return new int[]{x,y};
     }
 
 
@@ -195,13 +211,17 @@ public class Labyrinthe {
         // si c'est pas un mur, on effectue le deplacement
         if (!this.murs[suivante[0]][suivante[1]]&&!this.monstre.etrePresent(suivante[0],suivante[1])&&!this.pj.etrePresent(suivante[0],suivante[1])) {
             // on met a jour personnage
-
-            perso.x = suivante[0];
-            perso.y = suivante[1];
+            if(!this.p.etrePresent(suivante[0],suivante[1])||((this.p.etrePresent(suivante[0],suivante[1])&&!this.p.etreFerme()))) {
+                perso.x = suivante[0];
+                perso.y = suivante[1];
+            }
 
         }
         for(CaseDeclencheur c:caseD){
             c.event(this.pj);
+            if(c instanceof CaseOuverture) {
+                c.event(this.monstre);
+            }
         }
 
     }
