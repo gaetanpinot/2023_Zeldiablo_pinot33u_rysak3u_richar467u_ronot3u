@@ -156,6 +156,9 @@ public class Labyrinthe {
         coord=this.genererCoorValid();
 
         this.ajouterCaseDeclencheur(new CaseOuverture(coord[0],coord[1],this.p));
+
+        coord=this.genererCoorValid();
+        this.ajouterCaseDeclencheur(new CaseFermeture(coord[0],coord[1],this.p));
     }
 
     public void ajouterCaseDeclencheur(CaseDeclencheur c){
@@ -219,7 +222,7 @@ public class Labyrinthe {
         }
         for(CaseDeclencheur c:caseD){
             c.event(this.pj);
-            if(c instanceof CaseOuverture) {
+            if(!(c instanceof CasePiege)) {
                 c.event(this.monstre);
             }
         }
