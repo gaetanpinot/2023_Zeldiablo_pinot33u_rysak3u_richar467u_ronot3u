@@ -3,7 +3,7 @@ package gameLaby.laby;
 public abstract class CaseDeclencheur {
 
 
-     int x,y;
+     private int x,y;
 
 
 
