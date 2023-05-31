@@ -15,7 +15,7 @@ public class LabyDessin implements DessinJeu {
 
         gc.setFill(Color.WHITE);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        int taille = 20;
+        int taille = 40;
         for (int i = 0; i < laby.getLength(); i++) {
             for (int j = 0; j < laby.getLengthY(); j++) {
                 if (laby.getMur(i, j)) {

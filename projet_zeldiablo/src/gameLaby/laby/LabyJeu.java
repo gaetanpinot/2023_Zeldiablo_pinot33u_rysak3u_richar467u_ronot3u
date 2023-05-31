@@ -16,6 +16,7 @@ public class LabyJeu implements Jeu {
 
     @Override
     public void update(double secondes, Clavier clavier) {
+
         if (clavier.droite) {
             laby.deplacerPerso(laby.DROITE, laby.pj);
         }
@@ -28,10 +29,11 @@ public class LabyJeu implements Jeu {
         if (clavier.bas) {
             laby.deplacerPerso(laby.BAS, laby.pj);
         }
-        //String [] action={Labyrinthe.GAUCHE,Labyrinthe.DROITE,Labyrinthe.HAUT,Labyrinthe.BAS};
+        String [] action={Labyrinthe.GAUCHE,Labyrinthe.DROITE,Labyrinthe.HAUT,Labyrinthe.BAS};
 
 
-        //this.laby.deplacerPerso(action[(int) Math.floor(Math.random() * action.length)], this.laby.getMonstre());
+        this.laby.deplacerPerso(action[(int) Math.floor(Math.random() * action.length)], this.laby.getMonstre());
+
 
     }
 
