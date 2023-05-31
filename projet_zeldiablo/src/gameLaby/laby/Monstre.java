@@ -11,4 +11,8 @@ public class Monstre extends Personnage{
     public Monstre(int dx, int dy,int vie) {
         super(dx,dy,vie);
     }
+
+    public boolean etreMort(){
+        return vie <= 0;
+    }
 }
