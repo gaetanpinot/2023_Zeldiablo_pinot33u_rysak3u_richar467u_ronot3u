@@ -1,0 +1,109 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class CaseDeclencheur {
+  + CaseDeclencheur(int, int): 
+  - x: int
+  - y: int
+  ~ event(Personnage): void
+   y: int
+   x: int
+}
+class CaseFermeture {
+  + CaseFermeture(int, int, Porte): 
+  ~ event(Personnage): void
+}
+class CaseOuverture {
+  + CaseOuverture(int, int, Porte): 
+  ~ event(Personnage): void
+}
+class CasePiege {
+  + CasePiege(int, int): 
+  + event(Personnage): void
+}
+class LabyDessin {
+  + LabyDessin(): 
+  + dessinerJeu(Jeu, Canvas): void
+}
+class LabyJeu {
+  + LabyJeu(): 
+  + laby: Labyrinthe
+  + update(double, Clavier): void
+  + etreFini(): boolean
+  + init(): void
+   laby: Labyrinthe
+}
+class Labyrinthe {
+  + Labyrinthe(): 
+  + Labyrinthe(String): 
+  + monstre: Monstre
+  + deplacerPerso(String, Personnage): void
+  ~ getSuivant(int, int, String): int[]
+  + genererCoorValid(): int[]
+  + etreFini(): boolean
+  + getMur(int, int): boolean
+  + ajouterCaseDeclencheur(CaseDeclencheur): void
+   length: int
+   monstre: Monstre
+   porte: Porte
+   lengthY: int
+}
+class Main {
+  + Main(): 
+  + main(String[]): void
+}
+class MainLaby {
+  + MainLaby(): 
+  + main(String[]): void
+}
+class Monstre {
+  + Monstre(int, int, int): 
+}
+class Perso {
+  + Perso(int, int, int): 
+}
+class Personnage {
+  + Personnage(int, int, int): 
+  ~ y: int
+  ~ x: int
+  ~ vie: int
+  + ajouterVie(int): void
+  + etrePresent(int, int): boolean
+   vie: int
+   y: int
+   x: int
+}
+class Porte {
+  + Porte(int, int): 
+  - ferme: boolean
+  + etreFerme(): boolean
+  ~ etrePresent(int, int): boolean
+   ferme: boolean
+}
+
+CaseFermeture    -[#000082,plain]-^  CaseDeclencheur 
+CaseFermeture   "1" *-[#595959,plain]-> "p\n1" Porte           
+CaseOuverture    -[#000082,plain]-^  CaseDeclencheur 
+CaseOuverture   "1" *-[#595959,plain]-> "p\n1" Porte           
+CasePiege        -[#000082,plain]-^  CaseDeclencheur 
+LabyJeu         "1" *-[#595959,plain]-> "laby\n1" Labyrinthe      
+Labyrinthe      "1" *-[#595959,plain]-> "caseD\n*" CaseDeclencheur 
+Labyrinthe       -[#595959,dashed]->  CaseFermeture   : "«create»"
+Labyrinthe       -[#595959,dashed]->  CaseOuverture   : "«create»"
+Labyrinthe       -[#595959,dashed]->  CasePiege       : "«create»"
+Labyrinthe       -[#595959,dashed]->  Monstre         : "«create»"
+Labyrinthe      "1" *-[#595959,plain]-> "monstre\n1" Monstre         
+Labyrinthe      "1" *-[#595959,plain]-> "pj\n1" Perso           
+Labyrinthe       -[#595959,dashed]->  Perso           : "«create»"
+Labyrinthe      "1" *-[#595959,plain]-> "p\n1" Porte           
+Labyrinthe       -[#595959,dashed]->  Porte           : "«create»"
+Main             -[#595959,dashed]->  Labyrinthe      : "«create»"
+MainLaby         -[#595959,dashed]->  LabyDessin      : "«create»"
+MainLaby         -[#595959,dashed]->  LabyJeu         : "«create»"
+MainLaby         -[#595959,dashed]->  Labyrinthe      : "«create»"
+Monstre          -[#000082,plain]-^  Personnage      
+Perso            -[#000082,plain]-^  Personnage      
+@enduml
