@@ -1,22 +1,24 @@
 package gameLaby.laby;
 
-public class CasePiege implements CaseDeclencheur{
-    private boolean ammorce;
-    public CasePiege(){
+public class CasePiege extends CaseDeclencheur{
+    boolean ammorce;
+
+    public CasePiege(int dx,int dy){
+        super(dx,dy);
         ammorce=true;
     }
 
     @Override
-    public int event() {
-        if(ammorce){
-            ammorce=false;
-            return 10;
+    public void event(Personnage p) {
+        if(p.etrePresent(this.getX(),this.getY())){
+            if(ammorce){
+                System.out.println("boom");
+                ammorce=false;
+            }
+        }else {
+            ammorce=true;
         }
-        return 0;
     }
 
-    @Override
-    public void persoPart() {
-        ammorce=true;
-    }
+
 }

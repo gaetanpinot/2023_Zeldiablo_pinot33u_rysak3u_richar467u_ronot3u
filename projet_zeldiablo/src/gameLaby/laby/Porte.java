@@ -1,15 +1,19 @@
 package gameLaby.laby;
 
-public class Porte implements CaseDeclencheur{
+public class Porte extends CaseDeclencheur{
 
     private boolean ferme;
-    int x, y;
+
 
 
     public Porte(int x, int y){
-        this.x = x;
-        this.y = y;
+        super(x,y);
         ferme = false;
+    }
+
+    @Override
+    void event(Personnage p) {
+
     }
 
     public boolean etreFerme() {
@@ -20,8 +24,6 @@ public class Porte implements CaseDeclencheur{
         this.ferme = ferme;
     }
 
-    @Override
-    public void event() {
-        
-    }
+
+
 }

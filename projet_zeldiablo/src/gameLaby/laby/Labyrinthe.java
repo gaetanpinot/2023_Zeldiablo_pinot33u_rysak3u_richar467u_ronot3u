@@ -3,6 +3,7 @@ package gameLaby.laby;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * classe labyrinthe. represente un labyrinthe avec
@@ -37,7 +38,7 @@ public class Labyrinthe {
      * les murs du labyrinthe
      */
     public boolean[][] murs;
-    public CaseDeclencheur[][] cased;
+    public ArrayList<CaseDeclencheur> caseD;
 
     /**
      * retourne la case suivante selon une actions
@@ -92,7 +93,7 @@ public class Labyrinthe {
 
         // creation labyrinthe vide
         this.murs = new boolean[nbColonnes][nbLignes];
-        this.cased=new CaseDeclencheur[nbColonnes][nbLignes];
+        this.caseD=new ArrayList<>();
         this.pj = null;
 
         // lecture des cases
@@ -139,6 +140,7 @@ public class Labyrinthe {
 
         // ferme fichier
         bfRead.close();
+        this.caseD=new ArrayList<>();
 
         //ajout de casse pieger aléatoire
         int x =(int)Math.round(Math.random()*this.getLength()-1);
@@ -147,11 +149,11 @@ public class Labyrinthe {
             x =(int)Math.round(Math.random()*this.getLength()-1);
             y =(int)Math.round(Math.random()*this.getLengthY()-1);
         }
-        this.ajouterCaseDeclencheur(new CasePiege(),x,y);
+        this.ajouterCaseDeclencheur(new CasePiege(x,y));
     }
 
-    public void ajouterCaseDeclencheur(CaseDeclencheur c,int x,int y){
-        this.cased[x][y]=c;
+    public void ajouterCaseDeclencheur(CaseDeclencheur c){
+        this.caseD.add(c);
     }
 
 
@@ -193,14 +195,13 @@ public class Labyrinthe {
         // si c'est pas un mur, on effectue le deplacement
         if (!this.murs[suivante[0]][suivante[1]]&&!this.monstre.etrePresent(suivante[0],suivante[1])&&!this.pj.etrePresent(suivante[0],suivante[1])) {
             // on met a jour personnage
-            if(this.cased[suivante[0]][suivante[1]]!=null){
-                this.cased[suivante[0]][suivante[1]].event();
-            }
+
             perso.x = suivante[0];
             perso.y = suivante[1];
-            if(this.cased[courante[0]][courante[1]]!=null){
-                this.cased[courante[0]][courante[1]].persoPart();
-            }
+
+        }
+        for(CaseDeclencheur c:caseD){
+            c.event(this.pj);
         }
 
     }
