@@ -1,0 +1,25 @@
+@startuml
+title event de CaseFermeture si le personnage est au bonne coordonées
+participant Actor
+Actor -> CaseFermeture : event
+activate Actor
+activate CaseFermeture
+CaseFermeture -> CaseDeclencheur : getX
+activate CaseDeclencheur
+CaseDeclencheur --> CaseFermeture
+deactivate CaseDeclencheur
+CaseFermeture -> CaseDeclencheur : getY
+activate CaseDeclencheur
+CaseDeclencheur --> CaseFermeture
+deactivate CaseDeclencheur
+CaseFermeture -> Personnage : etrePresent
+activate Personnage
+Personnage --> CaseFermeture
+deactivate Personnage
+CaseFermeture -> Porte : setFerme
+activate Porte
+Porte --> CaseFermeture
+deactivate Porte
+return
+deactivate Actor
+@enduml
