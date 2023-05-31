@@ -31,6 +31,10 @@ public class LabyDessin implements DessinJeu {
                 if (laby.monstre.etrePresent(i, j)) {
                     gc.setFill(Color.DARKGREEN);
                     gc.fillOval(i * taille, j * taille, taille, taille);
+                    if(laby.monstre.etreMort()){
+                        gc.setFill(Color.WHITE);
+                        gc.fillOval(i * taille, j * taille, taille, taille);
+                    }
                 }
 
                 if (laby.getPorte().etreFerme()&& laby.getPorte().etrePresent(i,j)) {
