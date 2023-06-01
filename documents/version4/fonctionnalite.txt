@@ -1,11 +1,11 @@
-﻿1. Attaque des monstres (Martin)
+﻿5.1. Attaque des monstres (Martin)
 - Descriptif :
   - Lorsqu'un monstre doit agir, si le monstre se trouve à coté du héros, alors il ne se déplace pas mais il attaque celui-ci.
 - Critères de validation :
   - Lorsque le monstre est à côté du joueur, il attaque et ne se déplace pas. Par défaut, le Héros perd 1 point de vie.
   - Lorsque le monstre est loin du joueur, il n'attaque pas mais se déplace
 
-2. Attaque du joueur (Martin)
+5.2. Attaque du joueur (Martin)
 - Descriptif :
   - Lorsque le joueur appuie sur une touche donnée (par défaut la touche espace), il effectue une attaque contre les monstres qui se trouvent à côté de lui.
 - Critères de validation :
@@ -14,7 +14,7 @@
   - TOUS les monstres éloignés du joueur ne subissent pas de dégâts.
   - S'il n'y a aucun monstre autour du joueur, l'attaque à quand même lieu et empêche le déplacement du joueur, mais les monstres ne prennent pas de dégâts.
 
-3. Affichage des attaques (Hugo)
+5.3. Affichage des attaques (Hugo)
 - Descriptif :
   - Quand un monstre ou le héros attaque, il change de couleur
 - Critères de validation :
@@ -22,7 +22,7 @@
   - La couleur d'affichage du héros change au moment où il attaque (passe de bleu à Bleu foncé).
   - Après l'attaque, le joueur et le monstre reprennent une couleur normale.
 
-4. Attaque directionnelle (Gaetan)
+5.4. Attaque directionnelle (Gaetan)
 - Descriptif :
   - Quand le joueur demande a attaquer, le héros n'attaque que devant lui et ne blesse que le monstre qui se trouve dans cette direction.
 - Critères de validation :
@@ -31,7 +31,7 @@
   - Les monstres situés à côté du personnage dans une autre direction ne subissent pas de dégâts.
   - Si aucun monstre n'est présent devant le héros, aucun monstre ne subit de dégâts
 
-5. Mort des monstres (Killian)
+5.5. Mort des monstres (Killian)
 - Descriptif :
   - Lorsqu'un monstre n'a plus de points de vie, il meurt et disparait du jeu.
 - Critères de validation :
@@ -39,7 +39,7 @@
   - Lorsqu'un monstre par défaut est touché deux fois, il disparait.
   - Le héros attaque avant le monstre, si le monstre meurt, le monstre n'a pas le temps de répliquer et disparait avant.
 
-6. Fin du jeu : mort du héros (Killian)
+6.1 Fin du jeu : mort du héros (Killian)
 - Descriptif :
   - Lorsque le héros n'a plus de points de vie, le jeu s'arrête et la partie est perdue.
 - Critères de validation :
