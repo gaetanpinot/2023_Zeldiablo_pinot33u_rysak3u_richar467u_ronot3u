@@ -85,7 +85,7 @@ public class Labyrinthe {
      * @throws IOException probleme a la lecture / ouverture
      */
     public Labyrinthe(String nom) throws IOException {
-        this.monstre=new ArrayList<>();
+        this.monstre = new ArrayList<>();
         // ouvrir fichier
         FileReader fichier = new FileReader(nom);
         BufferedReader bfRead = new BufferedReader(fichier);
@@ -179,15 +179,15 @@ public class Labyrinthe {
         return (retour);
     }
 
-    public Monstre monstreEnXY(int x,int y){
-        Monstre retour=null;
+    public Monstre monstreEnXY(int x, int y) {
+        Monstre retour = null;
         for (Monstre m : monstre) {
             if (m.etrePresent(x, y)) {
-                retour=m;
+                retour = m;
                 break;
             }
         }
-        return(retour);
+        return (retour);
     }
 
     public int[] genererCoorValid() {
@@ -202,7 +202,7 @@ public class Labyrinthe {
 
 
     public Labyrinthe() {
-        this.monstre=new ArrayList<>();
+        this.monstre = new ArrayList<>();
 
         this.murs = new boolean[10][10];
         for (int i = 0; i < 10; i++) {
@@ -242,14 +242,19 @@ public class Labyrinthe {
         int[] suivante = getSuivant(courante[0], courante[1], action);
 
         // si c'est pas un mur, on effectue le deplacement
-        if (!this.murs[suivante[0]][suivante[1]] && !this.monstrePresent(suivante[0], suivante[1]) && !this.pj.etrePresent(suivante[0], suivante[1])) {
-            // on met a jour personnage
-            if (!this.p.etrePresent(suivante[0], suivante[1]) || ((this.p.etrePresent(suivante[0], suivante[1]) && !this.p.etreFerme()))) {
-                perso.x = suivante[0];
-                perso.y = suivante[1];
+        if (perso instanceof Fantome) {
+            perso.x = suivante[0];
+            perso.y = suivante[1];
+        } else {
+            if (!this.murs[suivante[0]][suivante[1]] && !this.monstrePresent(suivante[0], suivante[1]) && !this.pj.etrePresent(suivante[0], suivante[1])) {
+                // on met a jour personnage
+                if (!this.p.etrePresent(suivante[0], suivante[1]) || ((this.p.etrePresent(suivante[0], suivante[1]) && !this.p.etreFerme()))) {
+                    perso.x = suivante[0];
+                    perso.y = suivante[1];
+
+                }
 
             }
-
         }
         for (CaseDeclencheur c : caseD) {
             c.event(this.pj);
@@ -268,9 +273,9 @@ public class Labyrinthe {
      *
      * @return fin du jeu
      */
-    public void retirerMonstreMort(){
-        for(Monstre m:monstre){
-            if(m.etreMort()){
+    public void retirerMonstreMort() {
+        for (Monstre m : monstre) {
+            if (m.etreMort()) {
                 monstre.remove(m);
             }
         }
@@ -278,7 +283,7 @@ public class Labyrinthe {
     }
 
     public boolean etreFini() {
-        if (pj.etreMort() || monstre.size()==0) {
+        if (pj.etreMort() || monstre.size() == 0) {
             System.out.println("Fin du jeu");
             return true;
         }
@@ -328,7 +333,7 @@ public class Labyrinthe {
     }
 
     public void persoAttaquerMonstre() {
-        for (Monstre m:monstre){
+        for (Monstre m : monstre) {
             if (this.pj.etreEnFace(m)) {
                 this.pj.attaquer(m);
                 break;
