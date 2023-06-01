@@ -52,7 +52,7 @@ public class Labyrinthe {
      */
 
 
-    static int[] getSuivant(int x, int y, String action) {
+    public static int[] getSuivant(int x, int y, String action) {
         switch (action) {
             case HAUT:
                 // on monte une ligne
@@ -183,17 +183,16 @@ public class Labyrinthe {
         return (retour);
     }
 
-<<<<<<< HEAD
-    public Monstre monstreEnXY(int x, int y) {
-        Monstre retour = null;
-=======
+
+
+
     /*
     * renvoie le monstre au coordonnées x y, null si il n'y en a pas
      */
 
     public Monstre monstreEnXY(int x,int y){
         Monstre retour=null;
->>>>>>> 465c4756305531c268747c100cce935425a6af14
+
         for (Monstre m : monstre) {
             if (m.etrePresent(x, y)) {
                 retour = m;
@@ -283,16 +282,14 @@ public class Labyrinthe {
     /*
     retire tout les monstres mort de la liste de monstre
      */
-<<<<<<< HEAD
-    public void retirerMonstreMort() {
-        for (Monstre m : monstre) {
-            if (m.etreMort()) {
-=======
+
+
+
 
     public void retirerMonstreMort(){
         for(Monstre m:monstre){
             if(m.etreMort()){
->>>>>>> 465c4756305531c268747c100cce935425a6af14
+
                 monstre.remove(m);
             }
         }
