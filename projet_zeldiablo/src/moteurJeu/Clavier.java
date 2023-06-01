@@ -56,6 +56,11 @@ public class Clavier {
 
         switch (event.getCode()) {
 
+            //si touche espace
+            case SPACE:
+                space=true;
+                break;
+
             // si touche bas
             case S:
                 this.bas = false;
