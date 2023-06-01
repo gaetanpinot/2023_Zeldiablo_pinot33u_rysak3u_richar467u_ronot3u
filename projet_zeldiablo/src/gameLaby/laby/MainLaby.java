@@ -25,7 +25,7 @@ public class MainLaby {
         LabyDessin ld=new LabyDessin();
 
         MoteurJeu.setTaille(width,height);
-        MoteurJeu.setFPS(5);
+        MoteurJeu.setFPS(8);
 
         MoteurJeu.launch(lj,ld);
 
