@@ -210,6 +210,7 @@ public class Labyrinthe {
      */
 
     public void deplacerPerso(String action, Personnage perso) {
+        perso.orientation=action;
         perso.setAttaque(false);
         // case courante
         int[] courante = {perso.x, perso.y};
