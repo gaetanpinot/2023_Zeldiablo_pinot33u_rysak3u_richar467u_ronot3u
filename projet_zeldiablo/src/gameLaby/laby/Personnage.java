@@ -64,6 +64,10 @@ public class Personnage {
 
     public int getMaxVie(){return maxVie;}
 
+    public void attaquer(Personnage p){
+        p.ajouterVie(-1);
+    }
+
 
     public boolean estACoter(Personnage p){
         return (p.etrePresent(this.x+1,this.y)||p.etrePresent(this.x-1,this.y)||p.etrePresent(this.x,this.y+1)||p.etrePresent(this.x,this.y-1));
