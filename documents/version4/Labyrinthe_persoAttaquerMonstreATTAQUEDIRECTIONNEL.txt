@@ -1,0 +1,26 @@
+@startuml
+participant Actor
+Actor -> Labyrinthe : persoAttaquerMonstre
+activate Labyrinthe
+Labyrinthe -> Perso : etreEnFace
+activate Perso
+Perso -> Labyrinthe : getSuivant
+activate Labyrinthe
+Labyrinthe --> Perso
+deactivate Labyrinthe
+Perso -> Personnage : etrePresent
+activate Personnage
+Personnage --> Perso
+deactivate Personnage
+Perso --> Labyrinthe
+deactivate Perso
+Labyrinthe -> Personnage : attaquer
+activate Personnage
+Personnage -> Personnage : ajouterVie
+activate Personnage
+Personnage --> Personnage
+deactivate Personnage
+Personnage --> Labyrinthe
+deactivate Personnage
+return
+@enduml
