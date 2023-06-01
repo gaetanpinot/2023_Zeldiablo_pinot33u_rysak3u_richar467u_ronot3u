@@ -7,6 +7,7 @@ import moteurJeu.DessinJeu;
 import moteurJeu.Jeu;
 
 public class LabyDessin implements DessinJeu {
+
     @Override
     public void dessinerJeu(Jeu jeu, Canvas canvas) {
         Labyrinthe laby = ((LabyJeu) jeu).getLaby();
@@ -25,7 +26,7 @@ public class LabyDessin implements DessinJeu {
 
                 if (laby.pj.etrePresent(i, j)) {
                     gc.setFill(Color.RED);
-                    gc.setGlobalAlpha(laby.pj.getVie()/laby.pj.getMaxVie());
+                    gc.setGlobalAlpha(((double)(laby.pj.getVie())/(laby.pj.getMaxVie())));
                     gc.fillOval(i * taille, j * taille, taille, taille);
                 }
 
