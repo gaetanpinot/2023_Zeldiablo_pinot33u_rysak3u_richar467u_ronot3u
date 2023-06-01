@@ -1,5 +1,7 @@
 package gameLaby.laby;
 
+import gameLaby.laby.Labyrinthe;
+
 import java.io.IOException;
 
 /**

@@ -1,5 +1,9 @@
 package gameLaby.laby;
 
+import graphe.BellmanFord;
+import graphe.GrapheLabyrinthe;
+import graphe.Valeur;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -376,6 +380,23 @@ public class Labyrinthe {
                 this.deplacerPerso(Labyrinthe.BAS,m);
 
             }
+        }
+    }
+    public void deplacerIntellifenceUltime(Monstre m){
+        GrapheLabyrinthe g=new GrapheLabyrinthe(this);
+        BellmanFord b=new BellmanFord();
+        String c="("+m.getX()+","+m.getY()+")";
+        Valeur v=b.resoudre(g,c);
+        ArrayList<String> l=(ArrayList)v.calculerChemin("("+this.pj.getX()+","+this.pj.getY()+")");
+        int coor[]=GrapheLabyrinthe.extraireCoordonnees(l.get(1));
+        if(coor[0]>m.getX()){
+            this.deplacerPerso(Labyrinthe.DROITE,m);
+        } else if (coor[0]<m.getX()) {
+            this.deplacerPerso(Labyrinthe.GAUCHE,m);
+        } else if (coor[1]>m.getY()) {
+            this.deplacerPerso(Labyrinthe.BAS,m);
+        } else if (coor[1]<m.getY()) {
+            this.deplacerPerso(Labyrinthe.HAUT,m);
         }
     }
 
