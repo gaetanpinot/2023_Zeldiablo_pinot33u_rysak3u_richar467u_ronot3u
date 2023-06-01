@@ -1,0 +1,20 @@
+@startuml
+class MoteurJeu {
+- {static} double FPS
+- {static} double dureeFPS
+- {static} double WIDTH
+- {static} double HEIGHT
+- FrameStats frameStats
+- {static} Jeu jeu
+- {static} DessinJeu dessin
+~ Clavier controle
++ {static} void launch(Jeu,DessinJeu)
++ {static} void setFPS(int)
++ {static} void setTaille(double,double)
++ void start(Stage)
+- void startAnimation(Canvas)
+}
+
+
+Application <|-- MoteurJeu
+@enduml
