@@ -5,7 +5,7 @@ public class Personnage {
      * position du personnage
      */
     int x, y,vie;
-
+    boolean attaque;
     final int maxVie;
     public String orientation;
 
@@ -22,6 +22,14 @@ public class Personnage {
         this.vie=vie;
         this.orientation=Labyrinthe.BAS;
         this.maxVie=vie;
+        this.attaque=false;
+    }
+
+    public boolean getAttaque(){
+        return attaque;
+    }
+    public void setAttaque(boolean b){
+        attaque=b;
     }
 
     /**
