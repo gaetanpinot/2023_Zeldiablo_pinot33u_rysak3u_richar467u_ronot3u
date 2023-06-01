@@ -5,6 +5,7 @@ public class Personnage {
      * position du personnage
      */
     int x, y,vie;
+
     boolean attaque;
     final int maxVie;
     public String orientation;
@@ -73,6 +74,7 @@ public class Personnage {
     public int getMaxVie(){return maxVie;}
 
     public void attaquer(Personnage p){
+        this.setAttaque(true);
         p.ajouterVie(-1);
     }
 
