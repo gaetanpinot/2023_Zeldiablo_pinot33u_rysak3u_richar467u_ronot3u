@@ -29,7 +29,7 @@ public class LabyJeu implements Jeu {
         if(clavier.space){
             laby.persoAttaquerMonstre();
         }
-
+        
         if (clavier.droite) {
             laby.deplacerPerso(laby.DROITE, laby.pj);
             laby.pj.orientation=Labyrinthe.DROITE;
@@ -48,6 +48,8 @@ public class LabyJeu implements Jeu {
             laby.pj.orientation=Labyrinthe.BAS;
 
         }
+
+
     }
 
     @Override
