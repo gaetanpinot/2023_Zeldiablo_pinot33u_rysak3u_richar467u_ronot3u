@@ -1,48 +1,0 @@
-﻿1. Attaque des monstres
-- Descriptif :
-  - Lorsqu'un monstre doit agir, si le monstre se trouve à coté du héros, alors il ne se déplace pas mais il attaque celui-ci.
-- Critères de validation :
-  - Lorsque le monstre est à côté du joueur, il attaque et ne se déplace pas. Par défaut, le Héros perd 1 point de vie.
-  - Lorsque le monstre est loin du joueur, il n'attaque pas mais se déplace
-
-2. Attaque du joueur
-- Descriptif :
-  - Lorsque le joueur appuie sur une touche donnée (par défaut la touche espace), il effectue une attaque contre les monstres qui se trouvent à côté de lui.
-- Critères de validation :
-  - L'attaque a eectivement lieu quand le joueur appuie sur la touche.
-  - TOUS les monstres à côté du joueur prennent un point de dégât.
-  - TOUS les monstres éloignés du joueur ne subissent pas de dégâts.
-  - S'il n'y a aucun monstre autour du joueur, l'attaque à quand même lieu et empêche le déplacement du joueur, mais les monstres ne prennent pas de dégâts.
-
-3. Affichage des attaques
-- Descriptif :
-  - Quand un monstre ou le héros attaque, il change de couleur
-- Critères de validation :
-  - La couleur d'achage du monstre change au moment où il attaque (passe de rouge à noir).
-  - La couleur d'achage du héros change au moment où il attaque (passe de bleu à Bleu foncé).
-  - Après l'attaque, le joueur et le monstre reprennent une couleur normale.
-
-4. Attaque directionnelle
-- Descriptif :
-  - Quand le joueur demande a attaquer, le héros n'attaque que devant lui et ne blesse que le monstre qui se trouve dans cette direction.
-- Critères de validation :
-  - L'attaque a lieu dans la dernière direction suivie par le héros.
-  - L'attaque ne peut toucher au maximum qu'un monstre et seulement si ce monstre se trouve juste devant le personnage.
-  - Les monstres situés à côté du personnage dans une autre direction ne subissent pas de dégâts.
-  - Si aucun monstre n'est présent devant le héros, aucun monstre ne subit de dégâts
-
-5. Mort des monstres
-- Descriptif :
-  - Lorsqu'un monstre n'a plus de points de vie, il meurt et disparait du jeu.
-- Critères de validation :
-  - Les monstres ont par défaut 2 points de vie et ne peuvent pas avoir de points de vie négatifs.
-  - Lorsqu'un monstre par défaut est touché deux fois, il disparait.
-  - Le héros attaque avant le monstre, si le monstre meurt, le monstre n'a pas le temps de répliquer et disparait avant.
-
-6. Fin du jeu : mort du héros
-- Descriptif :
-  - Lorsque le héros n'a plus de points de vie, le jeu s'arrête et la partie est perdue.
-- Critères de validation :
-  - Le héros par défaut dispose de 5 points de vie.
-  - Chaque monstre fait 1 point de dégât lorsque le héros se fait attaquer.
-  - Quand le héros meurt, un message de fin est affiché sur la console et le jeu s'arrête.
