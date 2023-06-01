@@ -8,43 +8,43 @@ public class TestPersonnage {
     @Test
     public void testEstACoterOk()throws IOException{
         Labyrinthe l=new Labyrinthe("fichierTest/laby0Test.txt");
-        assertTrue(l.pj.estACoter(l.getMonstre()),"le mosntre est à coté du personnage");
+        assertTrue(l.pj.estACoter(l.getMonstre().get(0)),"le mosntre est à coté du personnage");
     }
     @Test
     public void testEstACoterKO()throws IOException{
         Labyrinthe l=new Labyrinthe("fichierTest/laby2Test.txt");
-        assertFalse(l.pj.estACoter(l.getMonstre()),"le monstre n'est pas à coté du personnage");
+        assertFalse(l.pj.estACoter(l.getMonstre().get(0)),"le monstre n'est pas à coté du personnage");
     }
     @Test
     public void testMonstreAttaqueOK()throws IOException{
         Labyrinthe l =new Labyrinthe("fichierTest/laby0Test.txt");
-        l.getMonstre().attaquer(l.pj);
+        l.getMonstre().get(0).attaquer(l.pj);
         assertEquals(99,l.pj.getVie(),"Le personnage aurait du prendre 1 point de degat");
     }
     @Test
     public void testJoueurAttaqueOK()throws IOException{
         Labyrinthe l =new Labyrinthe("fichierTest/laby0Test.txt");
-        l.pj.attaquer(l.getMonstre());
+        l.pj.attaquer(l.getMonstre().get(0));
 
-        assertEquals(99,l.getMonstre().getVie(),"le monstre aurait du perdre un point de vie");
+        assertEquals(99,l.getMonstre().get(0).getVie(),"le monstre aurait du perdre un point de vie");
     }
     @Test
     public void testAffichageAttaqueMonstreJouerOK()throws IOException{
         Labyrinthe l =new Labyrinthe("fichierTest/laby0Test.txt");
-        l.pj.attaquer(l.getMonstre());
-        l.getMonstre().attaquer(l.pj);
+        l.pj.attaquer(l.getMonstre().get(0));
+        l.getMonstre().get(0).attaquer(l.pj);
         assertTrue(l.pj.getAttaque(),"le personnage aurait du attaquer et donc changer de couleur");
-        assertTrue(l.getMonstre().getAttaque(),"le monstre aurait du attaquer et donc changer de couleur");
+        assertTrue(l.getMonstre().get(0).getAttaque(),"le monstre aurait du attaquer et donc changer de couleur");
     }
     @Test
     public void testAffichageAttaqueMonstreJoueurFIN()throws IOException{
         Labyrinthe l =new Labyrinthe("fichierTest/laby0Test.txt");
-        l.pj.attaquer(l.getMonstre());
-        l.getMonstre().attaquer(l.pj);
+        l.pj.attaquer(l.getMonstre().get(0));
+        l.getMonstre().get(0).attaquer(l.pj);
         l.deplacerPerso(Labyrinthe.DROITE,l.pj);
-        l.deplacerPerso(Labyrinthe.DROITE,l.getMonstre());
+        l.deplacerPerso(Labyrinthe.DROITE,l.getMonstre().get(0));
         assertFalse(l.pj.getAttaque(),"le personnage aurait du mettre fin à son attaque et donc ne pas changer de couleur");
-        assertFalse(l.getMonstre().getAttaque(),"le monstre aurait du mettre fin à son attaque et donc ne pas changer de couleur");
+        assertFalse(l.getMonstre().get(0).getAttaque(),"le monstre aurait du mettre fin à son attaque et donc ne pas changer de couleur");
     }
     @Test
     public void testAttaqueDirectionelleKO()throws IOException{
@@ -62,7 +62,7 @@ public class TestPersonnage {
     @Test
     public void testMortMonstreOK()throws IOException{
         Labyrinthe l =new Labyrinthe("fichierTest/laby0Test.txt");
-        l.getMonstre().ajouterVie(-100);
-        assertTrue(l.getMonstre().etreMort(),"le monstre devrait etre mort");
+        l.getMonstre().get(0).ajouterVie(-100);
+        assertTrue(l.getMonstre().get(0).etreMort(),"le monstre devrait etre mort");
     }
 }

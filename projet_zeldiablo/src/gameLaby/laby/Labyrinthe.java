@@ -168,6 +168,10 @@ public class Labyrinthe {
         this.caseD.add(c);
     }
 
+    /*
+    * true si un monstre est present en x y
+     */
+
     public boolean monstrePresent(int x, int y) {
         boolean retour = false;
         for (Monstre m : monstre) {
@@ -179,8 +183,17 @@ public class Labyrinthe {
         return (retour);
     }
 
+<<<<<<< HEAD
     public Monstre monstreEnXY(int x, int y) {
         Monstre retour = null;
+=======
+    /*
+    * renvoie le monstre au coordonnées x y, null si il n'y en a pas
+     */
+
+    public Monstre monstreEnXY(int x,int y){
+        Monstre retour=null;
+>>>>>>> 465c4756305531c268747c100cce935425a6af14
         for (Monstre m : monstre) {
             if (m.etrePresent(x, y)) {
                 retour = m;
@@ -267,20 +280,30 @@ public class Labyrinthe {
 
     }
 
-
-    /**
-     * jamais fini
-     *
-     * @return fin du jeu
+    /*
+    retire tout les monstres mort de la liste de monstre
      */
+<<<<<<< HEAD
     public void retirerMonstreMort() {
         for (Monstre m : monstre) {
             if (m.etreMort()) {
+=======
+
+    public void retirerMonstreMort(){
+        for(Monstre m:monstre){
+            if(m.etreMort()){
+>>>>>>> 465c4756305531c268747c100cce935425a6af14
                 monstre.remove(m);
             }
         }
 
     }
+    /**
+     * jamais fini
+     *
+     * @return fin du jeu
+     */
+
 
     public boolean etreFini() {
         if (pj.etreMort() || monstre.size() == 0) {
