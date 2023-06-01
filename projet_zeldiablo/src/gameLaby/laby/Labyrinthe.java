@@ -50,6 +50,9 @@ public class Labyrinthe {
      * @param action action effectuee
      * @return case suivante
      */
+
+
+
     static int[] getSuivant(int x, int y, String action) {
         switch (action) {
             case HAUT:
@@ -280,4 +283,11 @@ public class Labyrinthe {
     public Porte getPorte(){
         return p;
     }
+
+    public void persoAttaquerMonstre(){
+        if(this.pj.etreEnFace(monstre)){
+            this.pj.attaquer(monstre);
+        }
+    }
+
 }
