@@ -25,7 +25,7 @@ public class LabyDessin implements DessinJeu {
 
                 if (laby.pj.etrePresent(i, j)) {
                     gc.setFill(Color.RED);
-                    gc.setGlobalAlpha(laby.pj.getVie()/laby.pj.getMaxVie());
+                    gc.setGlobalAlpha((double) laby.pj.getVie()/laby.pj.getMaxVie());
                     gc.fillOval(i * taille, j * taille, taille, taille);
                 }
 
@@ -59,6 +59,7 @@ public class LabyDessin implements DessinJeu {
         if(laby.etreFini()){
             gc.setFill(Color.YELLOW);
             gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            gc.setFill(Color.BLACK);
             gc.fillText("Fin du jeu", canvas.getWidth()/2, canvas.getHeight()/2);
         }
     }
