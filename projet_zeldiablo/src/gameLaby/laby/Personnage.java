@@ -6,6 +6,10 @@ public class Personnage {
      */
     int x, y,vie;
 
+    final int maxVie;
+    public String orientation;
+
+
     /**
      * constructeur
      *
@@ -16,6 +20,8 @@ public class Personnage {
         this.x = dx;
         this.y = dy;
         this.vie=vie;
+        this.orientation=Labyrinthe.BAS;
+        this.maxVie=vie;
     }
 
     /**
@@ -55,7 +61,15 @@ public class Personnage {
     public int getVie(){
         return vie;
     }
-    public boolean estACote(Personnage p){
+
+    public int getMaxVie(){return maxVie;}
+
+    public void attaquer(Personnage p){
+        p.ajouterVie(-1);
+    }
+
+
+    public boolean estACoter(Personnage p){
         return (p.etrePresent(this.x+1,this.y)||p.etrePresent(this.x-1,this.y)||p.etrePresent(this.x,this.y+1)||p.etrePresent(this.x,this.y-1));
     }
 
