@@ -19,7 +19,7 @@ public class LabyJeu implements Jeu {
     @Override
     public void update(double secondes, Clavier clavier) {
 
-        if(laby.pj.estACote(laby.monstre)){
+        if(laby.pj.estACoter(laby.monstre)){
             laby.monstre.attaquer(laby.pj);
         } else{
             String [] action={Labyrinthe.GAUCHE,Labyrinthe.DROITE,Labyrinthe.HAUT,Labyrinthe.BAS};
