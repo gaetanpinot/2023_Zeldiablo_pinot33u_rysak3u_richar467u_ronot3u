@@ -69,7 +69,7 @@ public class Personnage {
     }
 
 
-    public boolean estACoter(Personnage p){
+    public boolean estACote(Personnage p){
         return (p.etrePresent(this.x+1,this.y)||p.etrePresent(this.x-1,this.y)||p.etrePresent(this.x,this.y+1)||p.etrePresent(this.x,this.y-1));
     }
 

@@ -36,7 +36,7 @@ public class LabyJeu implements Jeu {
 
         }
 
-        if(laby.pj.estACoter(laby.monstre)){
+        if(laby.pj.estACote(laby.monstre)){
             laby.monstre.attaquer(laby.pj);
         } else{
             String [] action={Labyrinthe.GAUCHE,Labyrinthe.DROITE,Labyrinthe.HAUT,Labyrinthe.BAS};
