@@ -18,6 +18,14 @@ public class LabyJeu implements Jeu {
 
     @Override
     public void update(double secondes, Clavier clavier) {
+        int vieTroll=-2;
+        for(Monstre mo:laby.getMonstre()){
+            if(mo instanceof Troll){
+                vieTroll=mo.getVie();
+                break;
+            }
+        }
+
         for(Monstre m:laby.getMonstre()) {
             if (laby.pj.estACoter(m)) {
                 m.attaquer(laby.pj);
@@ -50,6 +58,15 @@ public class LabyJeu implements Jeu {
 
         }
         laby.retirerMonstreMort();
+
+        for(Monstre mo:laby.getMonstre()){
+            if(mo instanceof Troll) {
+                if(!mo.etreMort() && mo.getVie()==vieTroll){
+                    mo.ajouterVie(1);
+                    break;
+                }
+            }
+        }
 
     }
 
