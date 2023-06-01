@@ -362,4 +362,21 @@ public class Labyrinthe {
 
     }
 
+
+    public void deplacerIntelligenceMoyenne(Monstre m){
+        if(m.x>pj.x){
+            this.deplacerPerso(Labyrinthe.GAUCHE,m);
+        } else if (m.x<pj.x){
+            this.deplacerPerso(Labyrinthe.DROITE,m);
+        }else {
+            if(m.y>pj.y){
+                this.deplacerPerso(Labyrinthe.HAUT,m);
+
+            }else if(m.y<pj.y){
+                this.deplacerPerso(Labyrinthe.BAS,m);
+
+            }
+        }
+    }
+
 }
