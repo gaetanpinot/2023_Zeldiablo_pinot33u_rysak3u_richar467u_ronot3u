@@ -17,6 +17,10 @@ public class LabyJeu implements Jeu {
     @Override
     public void update(double secondes, Clavier clavier) {
 
+        if(laby.pj.estACoter(laby.monstre)){
+            laby.pj
+        }
+
         if (clavier.droite) {
             laby.deplacerPerso(laby.DROITE, laby.pj);
             laby.pj.orientation=Labyrinthe.DROITE;
