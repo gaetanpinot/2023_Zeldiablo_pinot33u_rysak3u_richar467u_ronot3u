@@ -32,17 +32,19 @@ public class LabyDessin implements DessinJeu {
                     gc.setGlobalAlpha((double) laby.pj.getVie()/laby.pj.getMaxVie());
                     gc.fillOval(i * taille, j * taille, taille, taille);
                 }
+                gc.setGlobalAlpha(1);
 
-                if (laby.monstre.etrePresent(i, j)) {
-                    if(laby.monstre.getAttaque()){
+                if (laby.monstrePresent(i, j)) {
+                    Monstre tempM=laby.monstreEnXY(i,j);
+                    if(tempM.getAttaque()){
                         gc.setFill(Color.BLACK);
                     }else {
                         gc.setFill(Color.DARKGREEN);
                     }
-                    gc.setGlobalAlpha((double) laby.monstre.getVie() /laby.monstre.getMaxVie());
+                    gc.setGlobalAlpha((double) tempM.getVie() /tempM.getMaxVie());
 
                     gc.fillOval(i * taille, j * taille, taille, taille);
-                    if(laby.monstre.etreMort()){
+                    if(tempM.etreMort()){
                         gc.setFill(Color.WHITE);
                         gc.fillOval(i * taille, j * taille, taille, taille);
                     }

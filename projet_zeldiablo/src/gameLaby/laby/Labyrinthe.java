@@ -27,12 +27,12 @@ public class Labyrinthe {
     public static final String BAS = "Bas";
     public static final String GAUCHE = "Gauche";
     public static final String DROITE = "Droite";
-    public static final char MONSTRE='M';
+    public static final char MONSTRE = 'M';
     /**
      * attribut du personnage
      */
     public Perso pj;
-    public Monstre monstre;
+    public ArrayList<Monstre> monstre;
 
     /**
      * les murs du labyrinthe
@@ -50,7 +50,6 @@ public class Labyrinthe {
      * @param action action effectuee
      * @return case suivante
      */
-
 
 
     static int[] getSuivant(int x, int y, String action) {
@@ -86,6 +85,7 @@ public class Labyrinthe {
      * @throws IOException probleme a la lecture / ouverture
      */
     public Labyrinthe(String nom) throws IOException {
+        this.monstre=new ArrayList<>();
         // ouvrir fichier
         FileReader fichier = new FileReader(nom);
         BufferedReader bfRead = new BufferedReader(fichier);
@@ -98,7 +98,7 @@ public class Labyrinthe {
 
         // creation labyrinthe vide
         this.murs = new boolean[nbColonnes][nbLignes];
-        this.caseD=new ArrayList<>();
+        this.caseD = new ArrayList<>();
         this.pj = null;
 
         // lecture des cases
@@ -123,13 +123,13 @@ public class Labyrinthe {
 
                     case MONSTRE:
                         this.murs[colonne][numeroLigne] = false;
-                        this.monstre=new Monstre(colonne,numeroLigne,100);
+                        this.monstre.add(new Monstre(colonne, numeroLigne, 100));
                         break;
                     case PJ:
                         // pas de mur
                         this.murs[colonne][numeroLigne] = false;
                         // ajoute PJ
-                        this.pj = new Perso(colonne, numeroLigne,100);
+                        this.pj = new Perso(colonne, numeroLigne, 100);
                         break;
 
                     default:
@@ -145,61 +145,84 @@ public class Labyrinthe {
 
         // ferme fichier
         bfRead.close();
-        this.caseD=new ArrayList<>();
+        this.caseD = new ArrayList<>();
 
         //ajout de casse pieger aléatoire
-        int [] coord=this.genererCoorValid();
+        int[] coord = this.genererCoorValid();
 
-        this.ajouterCaseDeclencheur(new CasePiege(coord[0],coord[1]));
+        this.ajouterCaseDeclencheur(new CasePiege(coord[0], coord[1]));
 
-        coord=this.genererCoorValid();
+        coord = this.genererCoorValid();
 
-        this.p=new Porte(coord[0],coord[1]);
+        this.p = new Porte(coord[0], coord[1]);
 
-        coord=this.genererCoorValid();
+        coord = this.genererCoorValid();
 
-        this.ajouterCaseDeclencheur(new CaseOuverture(coord[0],coord[1],this.p));
+        this.ajouterCaseDeclencheur(new CaseOuverture(coord[0], coord[1], this.p));
 
-        coord=this.genererCoorValid();
-        this.ajouterCaseDeclencheur(new CaseFermeture(coord[0],coord[1],this.p));
+        coord = this.genererCoorValid();
+        this.ajouterCaseDeclencheur(new CaseFermeture(coord[0], coord[1], this.p));
     }
 
-    public void ajouterCaseDeclencheur(CaseDeclencheur c){
+    public void ajouterCaseDeclencheur(CaseDeclencheur c) {
         this.caseD.add(c);
     }
 
-    public int[] genererCoorValid(){
-        int x =(int)Math.floor(Math.random()*this.getLength());
-        int y =(int)Math.floor(Math.random()*this.getLengthY());
-        while (getMur(x,y)||this.pj.etrePresent(x,y)||this.monstre.etrePresent(x,y)){
-            x =(int)Math.floor(Math.random()*this.getLength());
-            y =(int)Math.floor(Math.random()*this.getLengthY());
+    public boolean monstrePresent(int x, int y) {
+        boolean retour = false;
+        for (Monstre m : monstre) {
+            retour = m.etrePresent(x, y);
+            if (retour) {
+                break;
+            }
         }
-        return new int[]{x,y};
+        return (retour);
+    }
+
+    public Monstre monstreEnXY(int x,int y){
+        Monstre retour=null;
+        for (Monstre m : monstre) {
+            if (m.etrePresent(x, y)) {
+                retour=m;
+                break;
+            }
+        }
+        return(retour);
+    }
+
+    public int[] genererCoorValid() {
+        int x = (int) Math.floor(Math.random() * this.getLength());
+        int y = (int) Math.floor(Math.random() * this.getLengthY());
+        while (getMur(x, y) || this.pj.etrePresent(x, y) || this.monstrePresent(x, y)) {
+            x = (int) Math.floor(Math.random() * this.getLength());
+            y = (int) Math.floor(Math.random() * this.getLengthY());
+        }
+        return new int[]{x, y};
     }
 
 
-    public Labyrinthe(){
-        this.murs=new boolean[10][10];
-        for(int i=0;i<10;i++){
-            for(int j=0;j<10;j++){
-                this.murs[i][j]=false;
+    public Labyrinthe() {
+        this.monstre=new ArrayList<>();
+
+        this.murs = new boolean[10][10];
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                this.murs[i][j] = false;
             }
         }
 
-        for (int i=0;i<10;i++){
-            this.murs[i][0]=true;
-            this.murs[i][9]=true;
-            this.murs[0][i]=true;
-            this.murs[9][i]=true;
+        for (int i = 0; i < 10; i++) {
+            this.murs[i][0] = true;
+            this.murs[i][9] = true;
+            this.murs[0][i] = true;
+            this.murs[9][i] = true;
         }
 
-        this.pj=new Perso(5,5,100);
-        this.monstre=new Monstre(1,1,100);
-        this.p=new Porte(1,1);
-        this.caseD=new ArrayList<>();
+        this.pj = new Perso(5, 5, 100);
+        this.monstre.add(new Monstre(1, 1, 100));
+        this.p = new Porte(1, 1);
+        this.caseD = new ArrayList<>();
     }
-
 
 
     /**
@@ -210,7 +233,7 @@ public class Labyrinthe {
      */
 
     public void deplacerPerso(String action, Personnage perso) {
-        perso.orientation=action;
+        perso.orientation = action;
         perso.setAttaque(false);
         // case courante
         int[] courante = {perso.x, perso.y};
@@ -219,19 +242,21 @@ public class Labyrinthe {
         int[] suivante = getSuivant(courante[0], courante[1], action);
 
         // si c'est pas un mur, on effectue le deplacement
-        if (!this.murs[suivante[0]][suivante[1]]&&!this.monstre.etrePresent(suivante[0],suivante[1])&&!this.pj.etrePresent(suivante[0],suivante[1])) {
+        if (!this.murs[suivante[0]][suivante[1]] && !this.monstrePresent(suivante[0], suivante[1]) && !this.pj.etrePresent(suivante[0], suivante[1])) {
             // on met a jour personnage
-            if(!this.p.etrePresent(suivante[0],suivante[1])||((this.p.etrePresent(suivante[0],suivante[1])&&!this.p.etreFerme()))) {
+            if (!this.p.etrePresent(suivante[0], suivante[1]) || ((this.p.etrePresent(suivante[0], suivante[1]) && !this.p.etreFerme()))) {
                 perso.x = suivante[0];
                 perso.y = suivante[1];
 
             }
 
         }
-        for(CaseDeclencheur c:caseD){
+        for (CaseDeclencheur c : caseD) {
             c.event(this.pj);
-            if(!(c instanceof CasePiege)) {
-                c.event(this.monstre);
+            if (!(c instanceof CasePiege)) {
+                for (Monstre m : monstre) {
+                    c.event(m);
+                }
             }
         }
 
@@ -243,8 +268,17 @@ public class Labyrinthe {
      *
      * @return fin du jeu
      */
+    public void retirerMonstreMort(){
+        for(Monstre m:monstre){
+            if(m.etreMort()){
+                monstre.remove(m);
+            }
+        }
+
+    }
+
     public boolean etreFini() {
-        if(pj.etreMort() || monstre.etreMort()){
+        if (pj.etreMort() || monstre.size()==0) {
             System.out.println("Fin du jeu");
             return true;
         }
@@ -275,6 +309,7 @@ public class Labyrinthe {
 
     /**
      * return mur en (i,j)
+     *
      * @param x
      * @param y
      * @return
@@ -283,17 +318,23 @@ public class Labyrinthe {
         // utilise le tableau de boolean
         return this.murs[x][y];
     }
-    public Monstre getMonstre(){
-        return  this.monstre;
+
+    public ArrayList<Monstre> getMonstre() {
+        return this.monstre;
     }
-    public Porte getPorte(){
+
+    public Porte getPorte() {
         return p;
     }
 
-    public void persoAttaquerMonstre(){
-        if(this.pj.etreEnFace(monstre)){
-            this.pj.attaquer(monstre);
+    public void persoAttaquerMonstre() {
+        for (Monstre m:monstre){
+            if (this.pj.etreEnFace(m)) {
+                this.pj.attaquer(m);
+                break;
+            }
         }
+
     }
 
 }

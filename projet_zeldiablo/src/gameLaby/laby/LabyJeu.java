@@ -18,12 +18,13 @@ public class LabyJeu implements Jeu {
 
     @Override
     public void update(double secondes, Clavier clavier) {
-
-        if(laby.pj.estACoter(laby.monstre)){
-            laby.monstre.attaquer(laby.pj);
-        } else{
-            String [] action={Labyrinthe.GAUCHE,Labyrinthe.DROITE,Labyrinthe.HAUT,Labyrinthe.BAS};
-            this.laby.deplacerPerso(action[(int) Math.floor(Math.random() * action.length)], this.laby.getMonstre());
+        for(Monstre m:laby.getMonstre()) {
+            if (laby.pj.estACoter(m)) {
+                m.attaquer(laby.pj);
+            } else {
+                String[] action = {Labyrinthe.GAUCHE, Labyrinthe.DROITE, Labyrinthe.HAUT, Labyrinthe.BAS};
+                this.laby.deplacerPerso(action[(int) Math.floor(Math.random() * action.length)],m);
+            }
         }
 
         if(clavier.space){
@@ -48,7 +49,7 @@ public class LabyJeu implements Jeu {
 
 
         }
-
+        laby.retirerMonstreMort();
 
     }
 
