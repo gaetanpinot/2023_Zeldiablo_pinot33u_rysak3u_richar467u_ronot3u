@@ -11,6 +11,8 @@ public class LabyJeu implements Jeu {
         return laby;
     }
 
+
+
     public Labyrinthe laby;
 
 

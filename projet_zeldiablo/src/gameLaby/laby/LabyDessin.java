@@ -7,6 +7,7 @@ import moteurJeu.DessinJeu;
 import moteurJeu.Jeu;
 
 public class LabyDessin implements DessinJeu {
+
     @Override
     public void dessinerJeu(Jeu jeu, Canvas canvas) {
         Labyrinthe laby = ((LabyJeu) jeu).getLaby();
