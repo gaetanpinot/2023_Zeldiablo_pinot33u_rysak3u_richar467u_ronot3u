@@ -242,6 +242,10 @@ public class Labyrinthe {
      * @return fin du jeu
      */
     public boolean etreFini() {
+        if(pj.etreMort() || monstre.etreMort()){
+            System.out.println("Fin du jeu");
+            return true;
+        }
         return false;
     }
 
