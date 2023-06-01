@@ -8,9 +8,13 @@ public class Monstre extends Personnage implements Intelligence{
      * @param dx position selon x
      * @param dy position selon y
      */
-    String intelligence;
+    private String intelligence;
     public Monstre(int dx, int dy,int vie) {
         super(dx,dy,vie);
         intelligence=Intelligence.intelligence[(int)(Math.floor(Math.random()*Intelligence.intelligence.length))];
+    }
+
+    public String getIntelligence(){
+        return intelligence;
     }
 }
