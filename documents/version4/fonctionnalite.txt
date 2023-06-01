@@ -9,7 +9,7 @@
 - Descriptif :
   - Lorsque le joueur appuie sur une touche donnée (par défaut la touche espace), il effectue une attaque contre les monstres qui se trouvent à côté de lui.
 - Critères de validation :
-  - L'attaque a eectivement lieu quand le joueur appuie sur la touche.
+  - L'attaque a effectivement lieu quand le joueur appuie sur la touche.
   - TOUS les monstres à côté du joueur prennent un point de dégât.
   - TOUS les monstres éloignés du joueur ne subissent pas de dégâts.
   - S'il n'y a aucun monstre autour du joueur, l'attaque à quand même lieu et empêche le déplacement du joueur, mais les monstres ne prennent pas de dégâts.
@@ -18,8 +18,8 @@
 - Descriptif :
   - Quand un monstre ou le héros attaque, il change de couleur
 - Critères de validation :
-  - La couleur d'achage du monstre change au moment où il attaque (passe de rouge à noir).
-  - La couleur d'achage du héros change au moment où il attaque (passe de bleu à Bleu foncé).
+  - La couleur d'affichage du monstre change au moment où il attaque (passe de rouge à noir).
+  - La couleur d'affichage du héros change au moment où il attaque (passe de bleu à Bleu foncé).
   - Après l'attaque, le joueur et le monstre reprennent une couleur normale.
 
 5.4. Attaque directionnelle (Gaetan)
