@@ -5,6 +5,8 @@ public class Personnage {
      * position du personnage
      */
     int x, y,vie;
+
+    final int maxVie;
     public String orientation;
 
 
@@ -19,6 +21,7 @@ public class Personnage {
         this.y = dy;
         this.vie=vie;
         this.orientation=Labyrinthe.BAS;
+        this.maxVie=vie;
     }
 
     /**
@@ -59,6 +62,7 @@ public class Personnage {
         return vie;
     }
 
+    public int getMaxVie(){return maxVie;}
 
 
     public boolean estACoter(Personnage p){
