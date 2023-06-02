@@ -51,21 +51,28 @@ public class GrapheLabyrinthe implements Graphe{
         int[] dir=Labyrinthe.getSuivant(i,j,Labyrinthe.GAUCHE);
         try {
 
-
-            if (!this.laby.getMur(dir[0], dir[1])) {
-                a.add(new Arc("(" + dir[0] + "," + dir[1] + ")", 1.0));
+            if (this.coorValide(dir[0], dir[1])) {
+                if (!this.laby.getMur(dir[0], dir[1])) {
+                    a.add(new Arc("(" + dir[0] + "," + dir[1] + ")", 1.0));
+                }
             }
             dir = Labyrinthe.getSuivant(i, j, Labyrinthe.DROITE);
-            if (!this.laby.getMur(dir[0], dir[1])) {
-                a.add(new Arc("(" + dir[0] + "," + dir[1] + ")", 1.0));
-            }
+            if (this.coorValide(dir[0], dir[1])){
+                if (!this.laby.getMur(dir[0], dir[1]) && dir[0] > 0 && dir[0] < this.laby.getLength() && dir[1] > 0 && dir[1] < this.laby.getLengthY()) {
+                    a.add(new Arc("(" + dir[0] + "," + dir[1] + ")", 1.0));
+                }
+        }
             dir = Labyrinthe.getSuivant(i, j, Labyrinthe.HAUT);
-            if (!this.laby.getMur(dir[0], dir[1])) {
-                a.add(new Arc("(" + dir[0] + "," + dir[1] + ")", 1.0));
-            }
+            if (this.coorValide(dir[0], dir[1])){
+                if (!this.laby.getMur(dir[0], dir[1]) && dir[0] > 0 && dir[0] < this.laby.getLength() && dir[1] > 0 && dir[1] < this.laby.getLengthY()) {
+                    a.add(new Arc("(" + dir[0] + "," + dir[1] + ")", 1.0));
+                }
+        }
             dir = Labyrinthe.getSuivant(i, j, Labyrinthe.BAS);
-            if (!this.laby.getMur(dir[0], dir[1])) {
-                a.add(new Arc("(" + dir[0] + "," + dir[1] + ")", 1.0));
+            if(this.coorValide(dir[0],dir[1])) {
+                if (!this.laby.getMur(dir[0], dir[1]) && dir[0] > 0 && dir[0] < this.laby.getLength() && dir[1] > 0 && dir[1] < this.laby.getLengthY()) {
+                    a.add(new Arc("(" + dir[0] + "," + dir[1] + ")", 1.0));
+                }
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -79,6 +86,9 @@ public class GrapheLabyrinthe implements Graphe{
         n=n.replace(")","");
         String [] s=n.split(",");
         return new int[]{Integer.parseInt(s[0]),Integer.parseInt(s[1])};
+    }
+    public boolean coorValide(int x,int y){
+        return x>=0&&x<this.laby.getLength()&&y>=0&&y<this.laby.getLengthY();
     }
     public Labyrinthe getLaby(){
         return this.laby;
