@@ -388,15 +388,17 @@ public class Labyrinthe {
         String c="("+m.getX()+","+m.getY()+")";
         Valeur v=b.resoudre(g,c);
         ArrayList<String> l=(ArrayList)v.calculerChemin("("+this.pj.getX()+","+this.pj.getY()+")");
-        int coor[]=GrapheLabyrinthe.extraireCoordonnees(l.get(1));
-        if(coor[0]>m.getX()){
-            this.deplacerPerso(Labyrinthe.DROITE,m);
-        } else if (coor[0]<m.getX()) {
-            this.deplacerPerso(Labyrinthe.GAUCHE,m);
-        } else if (coor[1]>m.getY()) {
-            this.deplacerPerso(Labyrinthe.BAS,m);
-        } else if (coor[1]<m.getY()) {
-            this.deplacerPerso(Labyrinthe.HAUT,m);
+        if(l.size()>1) {
+            int coor[] = GrapheLabyrinthe.extraireCoordonnees(l.get(1));
+            if (coor[0] > m.getX()) {
+                this.deplacerPerso(Labyrinthe.DROITE, m);
+            } else if (coor[0] < m.getX()) {
+                this.deplacerPerso(Labyrinthe.GAUCHE, m);
+            } else if (coor[1] > m.getY()) {
+                this.deplacerPerso(Labyrinthe.BAS, m);
+            } else if (coor[1] < m.getY()) {
+                this.deplacerPerso(Labyrinthe.HAUT, m);
+            }
         }
     }
 
