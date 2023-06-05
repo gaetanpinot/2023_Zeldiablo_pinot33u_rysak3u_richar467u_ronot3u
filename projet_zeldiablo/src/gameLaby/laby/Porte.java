@@ -26,6 +26,11 @@ public class Porte {
         this.ferme = ferme;
     }
 
-
+    public boolean estTraversable(int x,int y){
+        if(this.etrePresent(x,y)){
+            return !this.etreFerme();
+        }
+        return true;
+    }
 
 }
