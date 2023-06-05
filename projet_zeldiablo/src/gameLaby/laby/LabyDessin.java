@@ -24,6 +24,7 @@ public class LabyDessin implements DessinJeu {
                 for (CaseDeclencheur c : laby.caseD) {
                     if (c instanceof CasePiege) {
                         if (((CasePiege) (c)).getPasserDessus()) {
+
                             gc.drawImage(new Image("/pik.png"), c.getX() * taille, c.getY() * taille);
                         }
                     }
@@ -36,14 +37,29 @@ public class LabyDessin implements DessinJeu {
                 } else if (laby.monstrePresent(i, j)) {
                     Monstre tempM = laby.monstreEnXY(i, j);
                     if (tempM instanceof Fantome) {
+                        if(laby.getMur(i,j)){
+                            gc.drawImage(new Image("/mur.png"), i * taille, j * taille);
+
+                        }else{
+                            gc.drawImage(new Image("/sol.png"), i * taille, j * taille);
+
+                        }
+
+
                         gc.drawImage(new Image("/phantome.png"), i * taille, j * taille);
                     } else if (tempM instanceof Troll) {
                         if (tempM.getAttaque()) {
+                            gc.drawImage(new Image("/sol.png"), i * taille, j * taille);
+
                             gc.drawImage(new Image("/monstreFrappe.png"), i * taille, j * taille);
                         } else {
+                            gc.drawImage(new Image("/sol.png"), i * taille, j * taille);
+
                             gc.drawImage(new Image("/monstrefrappepas.png"), i * taille, j * taille);
                         }
                     } else {
+                        gc.drawImage(new Image("/sol.png"), i * taille, j * taille);
+
                         gc.drawImage(new Image("/monstre.png"), i * taille, j * taille);
                     }
                 } else if (laby.getPorte().etreFerme() && laby.getPorte().etrePresent(i, j)) {
