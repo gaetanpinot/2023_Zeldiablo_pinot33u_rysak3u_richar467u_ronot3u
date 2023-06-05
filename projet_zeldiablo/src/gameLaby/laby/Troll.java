@@ -1,6 +1,6 @@
 package gameLaby.laby;
 
-public class Troll extends Monstre implements Intelligence{
+public class Troll extends Monstre {
 
 
     public Troll(int dx, int dy, int vie) {
