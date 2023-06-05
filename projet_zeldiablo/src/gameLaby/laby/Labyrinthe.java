@@ -127,7 +127,7 @@ public class Labyrinthe {
 
                     case MONSTRE:
                         this.murs[colonne][numeroLigne] = false;
-                        this.monstre.add(new Monstre(colonne, numeroLigne, 100));
+                        this.monstre.add(new Monstre(colonne, numeroLigne, 10));
                         break;
                     case PJ:
                         // pas de mur
@@ -176,7 +176,7 @@ public class Labyrinthe {
         while (this.cooorValideMonstre(coord[0],coord[1])){
             coord=this.genererCoorValid();
         }
-        this.monstre.add(new Troll(coord[0],coord[1],10));
+        this.monstre.add(new Troll(coord[0],coord[1],2));
         coord=this.genererCoorValid();
         while (this.cooorValideMonstre(coord[0],coord[1])){
             coord=this.genererCoorValid();
