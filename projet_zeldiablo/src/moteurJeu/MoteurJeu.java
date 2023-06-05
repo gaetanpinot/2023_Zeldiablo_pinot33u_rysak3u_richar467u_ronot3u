@@ -30,8 +30,8 @@ public class MoteurJeu extends Application {
     /**
      * taille par defaut
      */
-    private static double WIDTH = 800;
-    private static double HEIGHT = 600;
+    private static double WIDTH = 1000;
+    private static double HEIGHT = 800;
 
     /**
      * statistiques sur les frames
@@ -106,7 +106,7 @@ public class MoteurJeu extends Application {
         root.setBottom(stats);
 
         // creation de la scene
-        final Scene scene = new Scene(root, WIDTH, HEIGHT);
+        final Scene scene = new Scene(root, 1500, 1000);
         primaryStage.setScene(scene);
         primaryStage.show();
 
