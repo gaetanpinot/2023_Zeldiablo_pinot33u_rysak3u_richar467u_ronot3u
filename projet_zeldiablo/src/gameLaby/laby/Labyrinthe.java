@@ -253,8 +253,8 @@ public class Labyrinthe {
         }
 
         this.pj = new Perso(5, 5, 100);
-        this.monstre.add(new Monstre(1, 1, 100));
-        this.p = new Porte(1, 1);
+        this.monstre.add(new Monstre(6, 5, 100));
+        this.p = new Porte(3, 3);
         this.caseD = new ArrayList<>();
     }
 

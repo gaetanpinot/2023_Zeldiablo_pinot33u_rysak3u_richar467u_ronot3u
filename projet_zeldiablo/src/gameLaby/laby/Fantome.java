@@ -11,4 +11,7 @@ public class Fantome extends Monstre{
     public Fantome(int dx, int dy, int vie) {
         super(dx, dy, vie);
     }
+    public Fantome(int dx, int dy, int vie,String i) {
+        super(dx,dy,vie,i);
+    }
 }

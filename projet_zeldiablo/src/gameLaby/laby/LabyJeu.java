@@ -19,14 +19,7 @@ public class LabyJeu implements Jeu {
     @Override
     public void update(double secondes, Clavier clavier) {
 
-        //on récupère la vie initiale du troll, présent dans la liste de monstres
-        int vieTroll=-2;
-        for(Monstre mo:laby.getMonstre()){
-            if(mo instanceof Troll){
-                vieTroll=mo.getVie();
-                break;
-            }
-        }
+
 
         for(Monstre m:laby.getMonstre()) {
             if (laby.pj.estACoter(m)) {
@@ -64,11 +57,8 @@ public class LabyJeu implements Jeu {
         //on compare la vie du troll à la fin du tour avec sa vie initiale
         for(Monstre mo:laby.getMonstre()){
             if(mo instanceof Troll) {
-                if(!mo.etreMort() && mo.getVie()==vieTroll){
-                    //on lui rajoute 1pv si sa vie n'a pas bougé : il n'a pas été attaqué dans ce tour
-                    mo.ajouterVie(1);
-                    break;
-                }
+                ((Troll) mo).regenerer();
+                break;
             }
         }
 
