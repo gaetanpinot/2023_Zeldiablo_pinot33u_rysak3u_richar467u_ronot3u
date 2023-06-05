@@ -1,0 +1,128 @@
+@startuml
+class gameLaby.laby.Perso {
++ boolean etreEnFace(Personnage)
+}
+class gameLaby.laby.CaseFermeture {
+~ Porte p
+~ void event(Personnage)
+}
+class gameLaby.laby.Fantome {
+}
+abstract class gameLaby.laby.CaseDeclencheur {
+- int x
+~ {abstract}void event(Personnage)
++ int getY()
++ int getX()
+}
+class gameLaby.laby.Personnage {
+~ int x
+~ boolean attaque
+~ int maxVie
++ String orientation
++ boolean getAttaque()
++ void setAttaque(boolean)
++ boolean etrePresent(int,int)
++ int getX()
++ int getY()
++ void ajouterVie(int)
++ int getVie()
++ int getMaxVie()
++ void attaquer(Personnage)
++ boolean estACoter(Personnage)
++ boolean etreMort()
+}
+class gameLaby.laby.Main {
++ {static} void main(String[])
+}
+interface gameLaby.laby.Intelligence {
+~ String NULLE
+~ String FAIBLE
+~ String MOYENNE
+~ String INTELLIGENT
+~ String[] intelligence
+}
+class gameLaby.laby.CaseOuverture {
+~ Porte p
+~ void event(Personnage)
+}
+class gameLaby.laby.LabyJeu {
++ Labyrinthe laby
++ Labyrinthe getLaby()
++ void update(double,Clavier)
++ void init()
++ boolean etreFini()
+}
+class gameLaby.laby.MainLaby {
++ {static} void main(String[])
+}
+class gameLaby.laby.Porte {
+~ int x
+- boolean ferme
+~ boolean etrePresent(int,int)
++ boolean etreFerme()
++ void setFerme(boolean)
++ boolean estTraversable(int,int)
+}
+class gameLaby.laby.Labyrinthe {
++ {static} char MUR
++ {static} char PJ
++ {static} char VIDE
++ {static} String HAUT
++ {static} String BAS
++ {static} String GAUCHE
++ {static} String DROITE
++ {static} char MONSTRE
++ Perso pj
++ ArrayList<Monstre> monstre
++ boolean[][] murs
++ ArrayList<CaseDeclencheur> caseD
+~ Porte p
++ {static} int[] getSuivant(int,int,String)
++ void ajouterCaseDeclencheur(CaseDeclencheur)
++ boolean monstrePresent(int,int)
++ boolean cooorValideMonstre(int,int)
++ Monstre monstreEnXY(int,int)
++ int[] genererCoorValid()
++ void deplacerPerso(String,Personnage)
++ void retirerMonstreMort()
++ boolean etreFini()
++ int getLengthY()
++ int getLength()
++ boolean getMur(int,int)
++ ArrayList<Monstre> getMonstre()
++ Porte getPorte()
++ void persoAttaquerMonstre()
++ void deplacerIntelligenceMoyenne(Monstre)
++ void deplacerIntellifenceUltime(Monstre)
++ void deplacerMonstreintelligence(Monstre)
+}
+class gameLaby.laby.LabyDessin {
++ void dessinerJeu(Jeu,Canvas)
+}
+class gameLaby.laby.Troll {
+~ String intelligence
+}
+class gameLaby.laby.CasePiege {
+~ boolean ammorce
+~ boolean passerDessus
++ void event(Personnage)
++ boolean getPasserDessus()
+}
+class gameLaby.laby.Monstre {
+- String intelligence
++ String getIntelligence()
+}
+
+
+gameLaby.laby.Personnage <|-- gameLaby.laby.Perso
+gameLaby.laby.CaseDeclencheur <|-- gameLaby.laby.CaseFermeture
+gameLaby.laby.Monstre <|-- gameLaby.laby.Fantome
+gameLaby.laby.CaseDeclencheur <|-- gameLaby.laby.CaseOuverture
+moteurJeu.Jeu <|.. gameLaby.laby.LabyJeu
+moteurJeu.DessinJeu <|.. gameLaby.laby.LabyDessin
+gameLaby.laby.Intelligence <|.. gameLaby.laby.Troll
+gameLaby.laby.Monstre <|-- gameLaby.laby.Troll
+gameLaby.laby.CaseDeclencheur <|-- gameLaby.laby.CasePiege
+gameLaby.laby.Intelligence <|.. gameLaby.laby.Monstre
+gameLaby.laby.Personnage <|-- gameLaby.laby.Monstre
+@enduml
