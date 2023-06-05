@@ -32,9 +32,8 @@ public class LabyJeu implements Jeu {
             if (laby.pj.estACoter(m)) {
                 m.attaquer(laby.pj);
             } else {
-                String[] action = {Labyrinthe.GAUCHE, Labyrinthe.DROITE, Labyrinthe.HAUT, Labyrinthe.BAS};
-                //this.laby.deplacerPerso(action[(int) Math.floor(Math.random() * action.length)],m);
-                this.laby.deplacerIntellifenceUltime(m);
+
+                this.laby.deplacerMonstreintelligence(m);
             }
         }
 

@@ -166,6 +166,22 @@ public class Labyrinthe {
 
         coord = this.genererCoorValid();
         this.ajouterCaseDeclencheur(new CaseFermeture(coord[0], coord[1], this.p));
+
+        coord=this.genererCoorValid();
+        while (this.cooorValideMonstre(coord[0],coord[1])){
+            coord=this.genererCoorValid();
+        }
+        this.monstre.add(new Monstre(coord[0],coord[1],10));
+        coord=this.genererCoorValid();
+        while (this.cooorValideMonstre(coord[0],coord[1])){
+            coord=this.genererCoorValid();
+        }
+        this.monstre.add(new Troll(coord[0],coord[1],10));
+        coord=this.genererCoorValid();
+        while (this.cooorValideMonstre(coord[0],coord[1])){
+            coord=this.genererCoorValid();
+        }
+        this.monstre.add(new Fantome(coord[0],coord[1],10));
     }
 
     public void ajouterCaseDeclencheur(CaseDeclencheur c) {
@@ -187,7 +203,9 @@ public class Labyrinthe {
         return (retour);
     }
 
-
+    public boolean cooorValideMonstre(int x,int y){
+        return !this.murs[x][y]&&!monstrePresent(x,y)&&this.pj.etrePresent(x,y);
+    }
 
 
     /*
@@ -399,6 +417,20 @@ public class Labyrinthe {
             } else if (coor[1] < m.getY()) {
                 this.deplacerPerso(Labyrinthe.HAUT, m);
             }
+        }
+    }
+    public void deplacerMonstreintelligence(Monstre m){
+        switch (m.getIntelligence()){
+            case Intelligence.FAIBLE :
+                String[] action = {Labyrinthe.GAUCHE, Labyrinthe.DROITE, Labyrinthe.HAUT, Labyrinthe.BAS};
+                this.deplacerPerso(action[(int) Math.floor(Math.random() * action.length)],m);
+                break;
+            case Intelligence.MOYENNE:
+                deplacerIntelligenceMoyenne(m);
+                break;
+            case Intelligence.INTELLIGENT:
+                deplacerIntellifenceUltime(m);
+                break;
         }
     }
 
