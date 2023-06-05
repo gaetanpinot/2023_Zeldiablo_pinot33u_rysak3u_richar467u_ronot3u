@@ -5,5 +5,5 @@ public interface Intelligence {
     String FAIBLE="faible";
     String MOYENNE="moyenne";
     String INTELLIGENT="intelligent";
-    String[] intelligence={NULLE,FAIBLE,MOYENNE,INTELLIGENT};
+    String[] intelligence={INTELLIGENT,FAIBLE,MOYENNE,NULLE};
 }

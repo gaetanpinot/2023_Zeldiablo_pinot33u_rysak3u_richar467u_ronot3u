@@ -12,7 +12,7 @@ public class Troll extends Monstre {
 
     public void regenerer(){
         if(!this.etreMort() && this.getVie()<this.getMaxVie()){
-            //on lui rajoute 1pv si sa vie n'a pas bougé : il n'a pas été attaqué dans ce tour
+
             this.ajouterVie(1);
 
         }
