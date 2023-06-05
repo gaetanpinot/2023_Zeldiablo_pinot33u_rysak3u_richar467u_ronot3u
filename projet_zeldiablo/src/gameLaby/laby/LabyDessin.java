@@ -32,18 +32,22 @@ public class LabyDessin implements DessinJeu {
 
                 if (laby.getMur(i, j)) {
                     gc.drawImage(new Image("/mur.png"), i * taille, j * taille);
+
+
+                    Monstre tempM = laby.monstreEnXY(i, j);
+                    if (tempM instanceof Fantome) {
+                        gc.drawImage(new Image("/phantome.png"), i * taille, j * taille);
+                    }
                 } else if (laby.pj.etrePresent(i, j)) {
+                    gc.drawImage(new Image("/sol.png"), i * taille, j * taille);
+
                     gc.drawImage(new Image("/heroNoDamage.png"), i * taille, j * taille);
                 } else if (laby.monstrePresent(i, j)) {
                     Monstre tempM = laby.monstreEnXY(i, j);
                     if (tempM instanceof Fantome) {
-                        if(laby.getMur(i,j)){
-                            gc.drawImage(new Image("/mur.png"), i * taille, j * taille);
 
-                        }else{
-                            gc.drawImage(new Image("/sol.png"), i * taille, j * taille);
 
-                        }
+                        gc.drawImage(new Image("/sol.png"), i * taille, j * taille);
 
 
                         gc.drawImage(new Image("/phantome.png"), i * taille, j * taille);
@@ -64,7 +68,7 @@ public class LabyDessin implements DessinJeu {
                     }
                 } else if (laby.getPorte().etreFerme() && laby.getPorte().etrePresent(i, j)) {
                     gc.drawImage(new Image("/mur.png"), i * taille, j * taille);
-                } else if(!laby.getPorte().etreFerme() && laby.getPorte().etrePresent(i, j)){
+                } else if (!laby.getPorte().etreFerme() && laby.getPorte().etrePresent(i, j)) {
                     gc.drawImage(new Image("/porte.png"), i * taille, j * taille);
                 } else {
                     gc.drawImage(new Image("/sol.png"), i * taille, j * taille);
