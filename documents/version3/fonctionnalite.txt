@@ -1,4 +1,4 @@
-﻿1. Création d'un labyrinthe par défaut
+﻿1. Création d'un labyrinthe par défaut (Hugo)
 - Descriptif :
   - Lors du lancement du jeu, un labyrinthe par défaut est afficher, le personnage sera au centre du labyrinthe
 - Critères de validation :
@@ -6,14 +6,14 @@
   - Le personnage est placé au centre de l'arène.
   - Les monstres (s'il y en a) sont placés sur des cases vides.
 
-2. Collision avec les Murs
+2. Collision avec les Murs (Tout le monde)
 - Descriptif :
   - Lorsque le joueur demande à déplacer le personnage en direction d'un mur, le personnage reste bloqué et ne se déplace pas.
 - Critères de validation :
   - La collision fonctionne dans les 4 directions.
   - Si la case est vide, le personnage avance.
 
-3. Gestion des niveaux
+3. Gestion des niveaux (Killian)
 - Descriptif :
   - Le jeu est constitué de plusieurs niveaux
 - Critères de validation :
@@ -21,7 +21,7 @@
   - Il est possible de choisir le niveau à lancer au démarrage de l'application (en modiant la chaine de caractère passée dans le main).
   - Testez en ajoutant un second niveau dans les fichiers.
 
-4. Cases déclencheur
+4. Cases déclencheur (Gaëtan)
 - Descriptif :
   - Lorsque une entité arrive sur certaines cases, ces cases déclenchent un effet.
 - Critères de validation :
@@ -29,7 +29,7 @@
   - Lorsqu'un personnage (héros ou monstre) marche sur cette case, elle déclenche immédiatement un effet
   - cet effet se traduit pour le moment, par un affichage dans la console à préciser.
 
-5. Cases piégées
+5. Cases piégées (Hugo)
 - Descriptif :
   - Lorsque une entité (héros ou monstre) arrive sur une case piégée, il subit des dégâts.
 - Critères de validation :
@@ -39,7 +39,7 @@
   - (optionnel) Lorsqu'une case a été détectée comme un piège, elle s'ache différemment dans le labyrinthe (en brun) ce qui permet au joueur d'en tenir compte
     ensuite
 
-6. Ouverture de Passages secrets
+6. Ouverture de Passages secrets (Killian, Hugo)
 - Descriptif :
   - Lorsque une entité (héros ou monstre) arrive sur une case d'ouverture, le labyrinthe se modie et la porte liée à cette case 
     (située à un autre endroit dans le labyrinthe)s'ouvre. Les portes peuvent donc constituer des pièges cachés puisque une case peut ouvrir
@@ -53,7 +53,7 @@
     Le carré est plein ou vide en fonction de l'état de la porte (ouverte/fermée).
 
 
-7. Fermeture de Passage
+7. Fermeture de Passage (Hugo)
 - Descriptif :
   - Lorsque une entité (héros ou monstre) arrive sur une case de type fermeture, le labyrinthe se modie et la porte liée à cette case se referme. 
     Cela permet de faire des pièges retors (une case ouvre la porte, la case derrière la porte la referme).
