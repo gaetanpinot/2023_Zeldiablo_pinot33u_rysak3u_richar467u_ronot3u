@@ -48,7 +48,7 @@ public class TestPersonnage {
     }
     @Test
     public void testAttaqueDirectionelleKO()throws IOException{
-        Labyrinthe l =new Labyrinthe("fichierTest/laby0Test.txt");
+        Labyrinthe l =new Labyrinthe();
         l.persoAttaquerMonstre();
         assertFalse(l.pj.getAttaque(),"Le personnage vise la direction du bas et le mosntre est à sa droite il n'aurait donc pas du l'attaquer");
     }
