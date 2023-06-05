@@ -1,48 +1,82 @@
-﻿5.1. Attaque des monstres (Martin)
+﻿1.  Génération de monstres immobiles
 - Descriptif :
-  - Lorsqu'un monstre doit agir, si le monstre se trouve à coté du héros, alors il ne se déplace pas mais il attaque celui-ci.
+  - Au lancement du jeu, le jeu ajoute diérents monstres dans l'environnement. Les monstres restent immobiles
 - Critères de validation :
-  - Lorsque le monstre est à côté du joueur, il attaque et ne se déplace pas. Par défaut, le Héros perd 1 point de vie.
-  - Lorsque le monstre est loin du joueur, il n'attaque pas mais se déplace
+  - Il est possible de construire un labyrinthe par défaut contenant quelques monstres (le labyrinthe par défaut est à dénir).
+  - Les monstres sont créés sur des cases vides.
+  - Il n'est pas possible de générer des monstres sur des cases non vides (position du joueur, d'autres monstres ou de murs)
+  - Les monstres doivent apparaitre dans l'interface graphique sous la forme d'un cercle rouge.
+  - Les monstres ne se déplacent pas (mais attaquent éventuellement le héros s'il passe à proximité - cf taches attaque dans les parties suivantes).
 
-5.2. Attaque du joueur (Martin)
+2.  Déplacement aléatoire des monstres
 - Descriptif :
-  - Lorsque le joueur appuie sur une touche donnée (par défaut la touche espace), il effectue une attaque contre les monstres qui se trouvent à côté de lui.
+  - Régulièrement, le jeu demande aux monstres de se déplacer dans une direction aléatoire.
 - Critères de validation :
-  - L'attaque a effectivement lieu quand le joueur appuie sur la touche.
-  - TOUS les monstres à côté du joueur prennent un point de dégât.
-  - TOUS les monstres éloignés du joueur ne subissent pas de dégâts.
-  - S'il n'y a aucun monstre autour du joueur, l'attaque à quand même lieu et empêche le déplacement du joueur, mais les monstres ne prennent pas de dégâts.
+  - A chaque évolution du jeu, que le joueur se déplace ou non, les monstres se déplacent.
+  - Les monstres sont bloqués par les obstacles. S'ils ont choisi de se diriger vers un obstacle (mur, joueur, ...), 
+    leur mouvement est alors annulé (sauf s'il s'agit de fantômes).
+  - Deux monstres ou un monstre et un joueur ne peuvent pas se trouver sur la même case (Si la tache Collision entre monstre est fonctionnelle).
+  - A chaque évolution, tous les monstres tentent de se déplacer.
+  - L'interface graphique se met à jour en fonction des déplacements des Monstres.
 
-5.3. Affichage des attaques (Hugo)
+3. Monstres attirés par le héros
 - Descriptif :
-  - Quand un monstre ou le héros attaque, il change de couleur
+  - A chaque fois que les monstres se déplacent, les monstres tentent de réduire leur distance à vol d'oiseau par rapport au héros.
 - Critères de validation :
-  - La couleur d'affichage du monstre change au moment où il attaque (passe de rouge à noir).
-  - La couleur d'affichage du héros change au moment où il attaque (passe de bleu à Bleu foncé).
-  - Après l'attaque, le joueur et le monstre reprennent une couleur normale.
+  - Après son déplacement, un monstre doit être plus proche du héros qu'avant son déplacement (distance de Manhattan sans prise en compte des murs).
+  - Les monstres soumis aux obstacles peuvent se retrouver bloqués dans des cul-de sac.
 
-5.4. Attaque directionnelle (Gaetan)
+4. Monstres au comportement intelligent
 - Descriptif :
-  - Quand le joueur demande a attaquer, le héros n'attaque que devant lui et ne blesse que le monstre qui se trouve dans cette direction.
+  - A chaque fois que les monstres se déplacent, ils se rapprochent dans la direction du héros en prenant en compte la présence des murs.
 - Critères de validation :
-  - L'attaque a lieu dans la dernière direction suivie par le héros.
-  - L'attaque ne peut toucher au maximum qu'un monstre et seulement si ce monstre se trouve juste devant le personnage.
-  - Les monstres situés à côté du personnage dans une autre direction ne subissent pas de dégâts.
-  - Si aucun monstre n'est présent devant le héros, aucun monstre ne subit de dégâts
+  - Avant son déplacement, le monstre détermine le meilleur chemin pour atteindre le héros.
+  - Le monstre prend en compte les obstacles qui le concernent pour trouver le meilleur chemin.
+  - lorsqu'il se déplace, le monstre suit effectivement le meilleur chemin et parvient jusqu'au héros même s'il y a des obstacles.
 
-5.5. Mort des monstres (Killian)
+5. Monstres avec intelligence variable 
 - Descriptif :
-  - Lorsqu'un monstre n'a plus de points de vie, il meurt et disparait du jeu.
+  - En plus d'être de type diérents (orc, troll, fantôme), les monstres peuvent avoir des degré d'intelligence diérent. 
+    En fonction de ce degré d'intelligence, ils se déplacent différemment.
 - Critères de validation :
-  - Les monstres ont par défaut 2 points de vie et ne peuvent pas avoir de points de vie négatifs.
-  - Lorsqu'un monstre par défaut est touché deux fois, il disparait.
-  - Le héros attaque avant le monstre, si le monstre meurt, le monstre n'a pas le temps de répliquer et disparait avant.
+  - Un monstre d'intelligence nulle reste immobile.
+  - Un monstre d'intelligence faible se déplace au hasard.
+  - Un monstre d'intelligence moyenne cherche à se rapprocher du héros sans prendre en compte les obstacles.
+  - Un monstre d'intelligence forte se rapproche du héros en évitant les obstacles.
+  - Plusieurs monstres avec des intelligences diérentes peuvent être présents dans le même labyrinthe.
+  - Chaque type de monstre (Orc, Fantome, Troll) peut avoir n'importe quel type d'intelligence. On peut avoir dans le même labyrinthe des Orc d'intelligence nulle,
+    faible, moyenne et forte. Idem pour les trolls et les fantômes.
+  - pour tester que cela fonctionne, il faut créer un seul labyrinthe contenant tous les couples (type de monstre/intelligence).
 
-6.1 Fin du jeu : mort du héros (Killian)
+6. Collision avec un monstre
 - Descriptif :
-  - Lorsque le héros n'a plus de points de vie, le jeu s'arrête et la partie est perdue.
+  - Lorsque le joueur demande au personnage de se déplacer vers une case contenant un monstre, le personnage ne se déplace pas.
 - Critères de validation :
-  - Le héros par défaut dispose de 5 points de vie.
-  - Chaque monstre fait 1 point de dégât lorsque le héros se fait attaquer.
-  - Quand le héros meurt, un message de fin est affiché sur la console et le jeu s'arrête.
+  - La collision fonctionne dans les 4 directions.
+  - Si la case est vide, le personnage avance.
+  - Le monstre se déplace à chaque fois après le joueur.
+
+7. Fantômes
+- Descriptif :
+  - Le labyrinthe dispose d'un nouveau type de monstre : les fantômes.
+- Critères de validation :
+  - Les fantômes peuvent traverser des murs mais pas les autres personnages (les autres monstres ou le héros)
+  - Les autres monstres continuent à être bloqués par des murs.
+  - Les attaques des fantômes fonctionnent de la même manière que les attaques des monstres de base.
+
+8. Troll
+- Descriptif :
+  - Les trolls sont un nouveau type de monstre. Un troll se régénère au fur et à mesure
+- Critères de validation :
+  - Un troll se déplace de la même manière qu'un monstre de base (les murs sont des obstacles).
+  - Si un Troll ne prend aucun dégât pendant un tour de jeu, il regagne un point de vie.
+  - les attaques des trolls fonctionnent de la même manière que les attaques des monstres de base.
+  - Un troll a par défaut 3 points de vie (à adapter).
+
+9. Affichage avec des sprites
+- Descriptif :
+  - La fenêtre n'ache plus des gures de base (rond, ...) mais des sprites représentant les personnages et les objets
+- Critères de validation :
+  - Les sprites concernent les murs, les monstres et le héros.
+  - Ils sont chargés une fois pour toute au lancement de l'application et ils peuvent être affichés dans le Canvas grâce à la méthode drawImage.
+
