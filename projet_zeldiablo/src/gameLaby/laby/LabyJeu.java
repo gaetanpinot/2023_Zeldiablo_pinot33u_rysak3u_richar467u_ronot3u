@@ -20,8 +20,9 @@ public class LabyJeu implements Jeu {
     public void update(double secondes, Clavier clavier) {
 
 
-
+        laby.pj.setAttaque(false);
         for(Monstre m:laby.getMonstre()) {
+            m.setAttaque(false);
             if (laby.pj.estACoter(m)) {
                 m.attaquer(laby.pj);
             } else {
