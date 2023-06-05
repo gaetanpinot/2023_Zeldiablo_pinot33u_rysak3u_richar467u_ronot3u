@@ -52,25 +52,25 @@ public class GrapheLabyrinthe implements Graphe{
         try {
 
             if (this.coorValide(dir[0], dir[1])) {
-                if (!this.laby.getMur(dir[0], dir[1])) {
+                if (!this.laby.getMur(dir[0], dir[1])&&this.laby.getPorte().estTraversable(dir[0],dir[1])&&!this.laby.monstrePresent(dir[0],dir[1])) {
                     a.add(new Arc("(" + dir[0] + "," + dir[1] + ")", 1.0));
                 }
             }
             dir = Labyrinthe.getSuivant(i, j, Labyrinthe.DROITE);
             if (this.coorValide(dir[0], dir[1])){
-                if (!this.laby.getMur(dir[0], dir[1]) && dir[0] > 0 && dir[0] < this.laby.getLength() && dir[1] > 0 && dir[1] < this.laby.getLengthY()) {
+                if (!this.laby.getMur(dir[0], dir[1]) &&this.laby.getPorte().estTraversable(dir[0],dir[1])&&!this.laby.monstrePresent(dir[0],dir[1])) {
                     a.add(new Arc("(" + dir[0] + "," + dir[1] + ")", 1.0));
                 }
         }
             dir = Labyrinthe.getSuivant(i, j, Labyrinthe.HAUT);
             if (this.coorValide(dir[0], dir[1])){
-                if (!this.laby.getMur(dir[0], dir[1]) && dir[0] > 0 && dir[0] < this.laby.getLength() && dir[1] > 0 && dir[1] < this.laby.getLengthY()) {
+                if (!this.laby.getMur(dir[0], dir[1]) &&this.laby.getPorte().estTraversable(dir[0],dir[1])&&!this.laby.monstrePresent(dir[0],dir[1])) {
                     a.add(new Arc("(" + dir[0] + "," + dir[1] + ")", 1.0));
                 }
         }
             dir = Labyrinthe.getSuivant(i, j, Labyrinthe.BAS);
             if(this.coorValide(dir[0],dir[1])) {
-                if (!this.laby.getMur(dir[0], dir[1]) && dir[0] > 0 && dir[0] < this.laby.getLength() && dir[1] > 0 && dir[1] < this.laby.getLengthY()) {
+                if (!this.laby.getMur(dir[0], dir[1]) &&this.laby.getPorte().estTraversable(dir[0],dir[1])&&!this.laby.monstrePresent(dir[0],dir[1])) {
                     a.add(new Arc("(" + dir[0] + "," + dir[1] + ")", 1.0));
                 }
             }
@@ -79,6 +79,15 @@ public class GrapheLabyrinthe implements Graphe{
         }
         return a;
 
+    }
+    public int[] suivantValide(String action,int x,int y) {
+        int[] dir = Labyrinthe.getSuivant(x, y, action);
+        if (this.coorValide(dir[0], dir[1])) {
+            if (!this.laby.getMur(dir[0], dir[1]) && this.laby.getPorte().estTraversable(dir[0], dir[1])) {
+                return dir;
+            }
+        }
+        return null;
     }
 
    static public int[] extraireCoordonnees(String n){
