@@ -2,9 +2,12 @@ package gameLaby.laby;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import moteurJeu.DessinJeu;
 import moteurJeu.Jeu;
+
+import java.awt.image.BufferedImage;
 
 public class LabyDessin implements DessinJeu {
     @Override
@@ -15,7 +18,7 @@ public class LabyDessin implements DessinJeu {
 
         gc.setFill(Color.WHITE);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        int taille = 40;
+        int taille = 52;
         for (int i = 0; i < laby.getLength(); i++) {
             for (int j = 0; j < laby.getLengthY(); j++) {
                 if (laby.getMur(i, j)) {
@@ -24,13 +27,7 @@ public class LabyDessin implements DessinJeu {
                 }
 
                 if (laby.pj.etrePresent(i, j)) {
-                    if(laby.pj.getAttaque()){
-                        gc.setFill(Color.DARKBLUE);
-                    }else {
-                        gc.setFill(Color.RED);
-                    }
-                    gc.setGlobalAlpha((double) laby.pj.getVie()/laby.pj.getMaxVie());
-                    gc.fillOval(i * taille, j * taille, taille, taille);
+                    gc.drawImage(new Image("/heroNoDamage.png"), i * taille, j * taille);
                 }
                 gc.setGlobalAlpha(1);
 
@@ -67,6 +64,7 @@ public class LabyDessin implements DessinJeu {
                 }
             }
         }
+
         if(laby.etreFini()){
             gc.setFill(Color.YELLOW);
             gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
